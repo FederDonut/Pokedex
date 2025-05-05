@@ -7,4 +7,14 @@ body{
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+    background-color: #1d2533;
+}
+header{
+    height: 150px;
+    width: 100%;
+    top: 0;
+    background-color: #576c6a;
+}
+footer{
+   
 }
