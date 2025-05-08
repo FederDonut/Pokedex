@@ -57,7 +57,22 @@ function getImportantData(data){
    console.log(PokemonData);
 }
 
+async function fetchIMG() {
+    for(i =0; i < PokemonData.length; i++){
+        try {
+            const imgResponse = await fetch(PokemonData[i].sprites.front_default);
+            if(imgResponse.ok){
+                const imgData = await imgResponse.json();
+                const imgSprite = PokemonData[i].sprites.front_default;
+                
+            }
+        } catch (error) {
+            console.error(error);
+        }
+    }
+}
 
+// To do bilder laden womöglich kann dies innerhalb der ersten fetch Funktion erledigt werden 
 
 
 
@@ -143,7 +158,7 @@ function getImportantData(data){
 
 function renderPokemon(){
     let contentRef = document.getElementById('content');
-    //let imgRef = document.getElementById('Pokemon-Img');
+    let imgRef = document.getElementById('Pokemon-Img');
     //imgRef.innerHTML="";
     contentRef.innerHTML="";
     for(i = 0; i < PokemonData.length; i ++){
