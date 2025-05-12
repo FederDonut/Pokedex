@@ -26,127 +26,65 @@ async function fetchBaseAPI(){
         }
     }
     dataProcessing();
-    renderPokemon();   
+    //fetchIMG();
+    renderPokemon();
+       
 }
 
 function dataProcessing(){
     //console.log(rowData);
-    for(i = 0; i < rowData.length; i++){
+    for(index = 0; index < rowData.length; index++){
         //console.log(rowData[i].name);
         //console.log(rowData[i].id);
         //console.log(rowData[i].sprites.front_default);
         //console.log(rowData[i].types)
         PokemonData.push({
-            name: rowData[i].name,
-            id: rowData[i].id,
-            types: rowData[i].types,
-            img_url: rowData[i].sprites.front_default
+            name: rowData[index].name,
+            id: rowData[index].id,
+            types: rowData[index].types,
+            img_url: rowData[index].sprites.front_default
             
         });
     }
     console.table(PokemonData);
-}
-
-
-function getImportantData(data){
-    PokemonData.push({       
-        name: data.name,  
-        img_url: data.sprites.front_default,
-        id: data.id
-    });
-   console.log(PokemonData);
+    fetchIMG() // Rufe die Bidverarbeitung nach der Datenspeicherung auf 
 }
 
 async function fetchIMG() {
-    for(i =0; i < PokemonData.length; i++){
+    for(let i =0; i < counter; i++){
+        let img_link = PokemonData[i].img_url;
+        let id = PokemonData[i].id
+        //console.log(img_link);
+        //console.log(i)
         try {
-            const imgResponse = await fetch(PokemonData[i].sprites.front_default);
+            const imgResponse = await fetch(img_link);
             if(imgResponse.ok){
-                const imgData = await imgResponse.json();
-                const imgSprite = PokemonData[i].sprites.front_default;
-                
+                //const imgData = await imgResponse.json();
+                //console.log("ImgFetch funktioniert")
+                console.log(img_link);
+                console.log(id);
+                renderImg(imgResponse, id);        
             }
         } catch (error) {
             console.error(error);
         }
+        
     }
 }
 
-// To do bilder laden womöglich kann dies innerhalb der ersten fetch Funktion erledigt werden 
+function renderImg(imgResponse ,id){
+    //console.log(imgResponse);
+    let spriete = document.getElementById('Pokemon-Img'+id);// wichtig kein , sondern +
+    spriete.innerHTML="";
+    //for(let i = 0; i< PokemonData.length; i++){
+        spriete.src = imgResponse.url
+    //}
+    
+    
+}
 
 
 
-//async function fetchBaseAPI(){// eigentliche init()
-//    try {
-//        let response = await fetch(BASE_URL);
-//        if(response.ok){
-//            let responseAsJson = await response.json();
-//            console.log("API Zugriff erfolgreich");
-//            //console.log(responseAsJson);
-//            let pokeObjekt = responseAsJson.results;
-//            //console.log(pokeObjekt);
-//            
-//            
-//           
-//            //getPokemonImg();
-//            addPokemonToArray(pokeObjekt);
-//            renderPokemon()
-//            fetchPokemonDetails();
-//            
-//        }   
-//    } catch (error) {
-//        console.error(error);
-//    }
-//}
-//
-//// Namen und weiterführende URLs in Array speichern
-//function addPokemonToArray(pokeObjekt){
-//    let pokeName = Object.keys(pokeObjekt);
-//    for(index = 0; index < pokeName.length; index ++){
-//        PokeNames.push(
-//            {  
-//                name : pokeObjekt[index].name,
-//                url : pokeObjekt[index].url,
-//            }
-//        )   
-//    }
-//}
-//
-//
-//
-//async function fetchPokemonDetails(){
-//    for(i = 0; i < PokeNames.length ; i++){
-//        //console.table(PokeNames[i].url); // URLs separiert
-//        try{
-//            const details= await fetch(PokeNames[i].url);// Ziehe hier alle einzelnen URLs
-//            if(details.ok){
-//                let data = await details.json();
-//                //console.log(PokeNames[i].name);
-//                console.log(data);
-//                console.log(data.sprites.front_default);
-//                //console.table(PokeNames);
-//                //pokemonDetails.push(data);// speichere diese in einem Array
-//                 
-//            }
-//        }catch(error){
-//            console.error(error);
-//        }
-//    }
-//    //getPokemonImgURL();
-//    return data; // kann die nun in renderfunctins nutzen   
-//}
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -164,6 +102,7 @@ function renderPokemon(){
     for(i = 0; i < PokemonData.length; i ++){
         let name = PokemonData[i].name;
         let id = PokemonData[i].id;
+        //let img = PokemonData[i].
         //let img = PokemonData[i].sprites.front_default;
         contentRef.innerHTML += htmlLayout(id,name);
         
