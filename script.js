@@ -36,9 +36,6 @@ async function fetchBaseAPI(){
        
 }
 
-
-
-
 async function fetchPokemonIMG() {
     for(let i =0; i < counter; i++){
         let img_link = PokemonObjects[i].img_url;
@@ -65,7 +62,9 @@ function renderPokemonObject(){
         let id = PokemonObjects[i].id;
         let typ1 = PokemonObjects[i].typ1
         let typ2 = PokemonObjects[i].typ2
-        contentRef.innerHTML += htmlLayout(id,name,typ1,typ2);
+        let height = PokemonData[i].height
+        let weight= PokemonData[i].weight
+        contentRef.innerHTML += htmlLayout(id,name,typ1,typ2,height,weight);
         backgroundColor(id);
         checkTypes(id);    
     }  
@@ -86,12 +85,20 @@ function backgroundColor(id){
     card.classList.add(type.innerText);
 };
 function checkTypes(id){
-    let type = document.getElementById('Pokemon-Typ')
     let secondType = document.getElementById('second-type'+id);
+    let header = document.getElementById('second-type-header'+id);
     if(secondType.innerText == "undefined"){
-        secondType.innerText=""
-        console.log(true);
-        //type.removeChild('second-types'+id);    
+        secondType.innerHTML=""
+        header.innerHTML=""
     }
 }
 
+function toggleOverlay(){
+    let overlayRef = document.getElementById('overlay');
+    overlayRef.classList.toggle('d_none');
+    if(overlayRef.classList.contains('d-none')){
+        overlayRef.innerHTML="";
+    }else{
+        overlayRef.innerHTML = renderOverlay();
+    }
+}

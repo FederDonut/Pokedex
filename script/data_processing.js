@@ -9,7 +9,9 @@ function dataProcessing(){//Datenverarbeitung
             name: rowData[index].name,
             id: rowData[index].id,
             types: rowData[index].types,
-            img_url: rowData[index].sprites.front_default
+            img_url: rowData[index].sprites.front_default,
+            height: rowData[index].height,
+            weight: rowData[index].weight
             
         });
     }
@@ -47,7 +49,9 @@ function createPokemonObject(){
                 id: PokemonData[i].id,
                 typ1: PokemonTypes[i].typ1,
                 typ2: PokemonTypes[i].typ2,
-                img_url: PokemonData[i].img_url
+                img_url: PokemonData[i].img_url,
+                weight: PokemonData[i].weight ,// angabe in kg
+                height: PokemonData[i].height //umrechnung in m
             };
             PokemonObjects.push(pokemon);
         }else{
