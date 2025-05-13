@@ -1,0 +1,46 @@
+/*Farben der ersten Generation*/
+.fire{
+    background-color: #F75231;
+}
+.grass{
+    background-color: #7BCE52;
+}
+.water{
+    background-color: #399CFF;
+}
+.normal{
+    background-color: #ADA593;
+}
+.poisen{
+    background-color: #B559A4;
+}
+.ice{
+    background-color: #5ACEE7;
+}
+.bug{
+    background-color: #ACBC21;
+}
+.dragon{
+    background-color: #7B63E7;
+}
+.psychic{
+    background-color: #FF73A5;
+}
+.electric{
+    background-color: #FEC530;
+}
+.rock{
+    background-color: #BDA55A;
+}
+.fighting{
+    background-color: #A55139;
+}
+.ground{
+    background-color: #D5B459;
+}
+.ghost{
+    background-color: #6262B5;
+}
+.fairy{
+    background-color: #E5A5E5;
+}
