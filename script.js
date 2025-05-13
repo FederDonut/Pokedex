@@ -4,7 +4,7 @@
 
 
 const BASE_URL = "https://pokeapi.co/api/v2/pokemon/"
-let counter = 150;// Gibt an wie viele Pokemon im Pokedex geladen werden 
+let counter = 15;// Gibt an wie viele Pokemon im Pokedex geladen werden 
 
 
 
@@ -66,7 +66,9 @@ function renderPokemonObject(){
         let typ1 = PokemonObjects[i].typ1
         let typ2 = PokemonObjects[i].typ2
         contentRef.innerHTML += htmlLayout(id,name,typ1,typ2);
-    }    
+        backgroundColor(id);
+        checkTypes(id);    
+    }  
 };
 
 function renderPokemonImg(imgResponse ,id){// Lädt die Bilder 
@@ -77,8 +79,19 @@ function renderPokemonImg(imgResponse ,id){// Lädt die Bilder
     
 };
 
-function backgroundColor(){
-    let type = document.getElementById('typ1');
-
+function backgroundColor(id){
+    let type = document.getElementById('main-type'+id);
+    let card = document.getElementById('card'+id);
+    //console.table(type.innerText);
+    card.classList.add(type.innerText);
+};
+function checkTypes(id){
+    let type = document.getElementById('Pokemon-Typ')
+    let secondType = document.getElementById('second-type'+id);
+    if(secondType.innerText == "undefined"){
+        secondType.innerText=""
+        console.log(true);
+        //type.removeChild('second-types'+id);    
+    }
 }
 

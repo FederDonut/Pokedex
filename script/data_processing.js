@@ -55,5 +55,5 @@ function createPokemonObject(){
         }
         
     }
-   console.table(PokemonObjects);       
+   //console.table(PokemonObjects);       
 }
