@@ -44,7 +44,8 @@ async function fetchPokemonIMG() {
             const imgResponse = await fetch(img_link);
             if(imgResponse.ok){
                 renderPokemonImg(imgResponse, id);
-                        
+                
+                //console.log(i);       
             }
         } catch (error) {
             console.error(error);
@@ -62,11 +63,12 @@ function renderPokemonObject(){
         let id = PokemonObjects[i].id;
         let typ1 = PokemonObjects[i].typ1
         let typ2 = PokemonObjects[i].typ2
-        let height = PokemonData[i].height
-        let weight= PokemonData[i].weight
-        contentRef.innerHTML += htmlLayout(id,name,typ1,typ2,height,weight);
+        let height = PokemonData[i].height/10
+        let weight= PokemonData[i].weight/10
+        contentRef.innerHTML += htmlLayout(id,name,typ1,typ2,height,weight,i);
         backgroundColor(id);
-        checkTypes(id);    
+        checkTypes(id);
+            
     }  
 };
 
@@ -93,12 +95,51 @@ function checkTypes(id){
     }
 }
 
-function toggleOverlay(){
+function toggleOverlay(i){
     let overlayRef = document.getElementById('overlay');
     overlayRef.classList.toggle('d_none');
-    if(overlayRef.classList.contains('d-none')){
+    if(overlayRef.classList.contains('d_none')){
+        console.log(true,'d_none ist aktiv overlay nicht sichtbar ')
         overlayRef.innerHTML="";
+
     }else{
+        console.log(false,'d_none ist inaktiv overlay sichtbar ')
         overlayRef.innerHTML = renderOverlay();
+        renderOverlayTypeColor(i);
+        renderPokemonOnOverlayContent(i);
     }
+}
+
+//function toggleOverlay(i){ // warum tut diese funktionicht ?????
+//    let checksum;
+//    let overlayRef = document.getElementById('overlay');
+//    //let overlayContent = document.getElementById('overlay-card')
+//    overlayRef.classList.toggle('d_none');
+//    if(overlayRef.classList.contains('d-none')){
+//        console.log(true)
+//        overlayRef.innerHTML="";
+//        //overlayContent.innerHTML="";
+//    }else{
+//        console.log(false)
+//        console.log();
+//        overlayRef.innerHTML = renderOverlay();
+//        renderOverlayTypeColor(i)
+//        renderPokemonOnOverlayContent(i);
+//       
+//    }
+//}
+function preventBubbling (event){
+    event.stopPropagation();   
+}
+
+function renderPokemonOnOverlayContent(i){
+    let content = document.getElementById('overlay-body');
+    content.innerHTML += htmlOverlayBody(i);
+}
+
+function renderOverlayTypeColor(i){
+    let card = document.getElementById('overlay-card');
+    let pokeTyp = PokemonObjects[i].typ1;
+    console.log(pokeTyp)
+    card.classList.toggle(pokeTyp);
 }

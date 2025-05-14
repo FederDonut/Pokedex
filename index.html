@@ -9,9 +9,10 @@
     <link rel="stylesheet" href="./style/assets.css">
     <link rel="stylesheet" href="style.css">
     
-    <script src="./script/db.js"></script>
+    <!--<script src="./script/db.js"></script>-->
     <script src="./script/data_processing.js"></script>
     <script src="./script/template.js"></script>
+    <script src="./script/render_overlay.js"></script>
     <script src="./script.js"></script>
 
 
@@ -20,10 +21,9 @@
     <header>
         <h1>Pokedex</h1>
     </header>
-    <div class="overlay d_none" id="overlay" onclick="toggleOverlay()"></div>
+    <div class="overlay d_none" id="overlay" onclick="toggleOverlay(i)"></div>
     <div class="content" id="content"></div>
    
     <footer></footer>
 </body>
 </html>
-

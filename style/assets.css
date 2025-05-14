@@ -36,11 +36,7 @@
     
 
 }
-.card-Img:hover{
+.card-Img:hover{/*spielerei*/
     background-image: linear-gradient(45deg, #141111, transparent); 
 }
-.upper-body{
-    display: flex;
-   align-items: center;
-    gap: 20px;
-}
+

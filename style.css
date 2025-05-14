@@ -64,7 +64,8 @@ header{
     align-items: center;
 }
 .overlay-content-render{
-    height: 500px;
-    width: 500px;
-    background-color: blue;
+    height: 800px;
+    width: 800px;
+    
+    border-radius: 15px;
 }

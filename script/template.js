@@ -1,7 +1,7 @@
 // Pokemons werden hier abgebildet.
-function htmlLayout(id,name,typ1,typ2,height,weight){
+function htmlLayout(id,name,typ1,typ2,height,weight,i){
     return `
-           <div class="card" style="" onclick="toggleOverlay()" id="card${id}">
+           <div class="card" style="" onclick="toggleOverlay(${i})" id="card${id}">
               <img src="" id="Pokemon-Img${id}"class="card-Img" alt="...">
               <div class="card-body">
                 <div class="upper-body">
@@ -10,8 +10,8 @@ function htmlLayout(id,name,typ1,typ2,height,weight){
                 </div>
                 <div class="seperator"></div>
                 <div class="pokemon-stats">
-                  <h4>Größe: ${height} m</h4>
-                  <h4>Gewicht: ${weight} kg</h4>
+                  <h4>height: ${height} m</h4>
+                  <h4>weight: ${weight} kg</h4>
                 </div>
                 <div id="Pokemon-Typ" class="pokemon-typ">
                   <div class="typ1">
@@ -33,12 +33,24 @@ function htmlLayout(id,name,typ1,typ2,height,weight){
     `
 }
 
-function renderOverlay(){
+function renderOverlay(){ // Grobstrucktur
   return `
       <div class="overlay-content-flex">
-          <div class="overlay-content-render">
-              
-          </div>
+          <div class="overlay-content-render" id="overlay-card" onclick="preventBubbling(event)">
+              <div class="overlay-body" id="overlay-body">
+               
+              </div>
+          </div>    
       </div>
+  `
+}
+
+function htmlOverlayBody(i){
+  return `
+        <div class="content-header">
+          <h2>#${PokemonObjects[i].id}</h2>
+          <h2>${PokemonData[i].name}</h2>
+        </div>
+  
   `
 }

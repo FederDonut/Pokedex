@@ -1,3 +1,13 @@
+
+let rowData = [];
+let PokemonData =[];// Name + BasisURL
+let PokemonTypes = [];
+let PokemonObjects =[]
+
+
+
+
+
 function dataProcessing(){//Datenverarbeitung
     //console.log(rowData);
     for(index = 0; index < rowData.length; index++){
@@ -50,7 +60,7 @@ function createPokemonObject(){
                 typ1: PokemonTypes[i].typ1,
                 typ2: PokemonTypes[i].typ2,
                 img_url: PokemonData[i].img_url,
-                weight: PokemonData[i].weight ,// angabe in kg
+                weight: PokemonData[i].weight ,// angabe in kg muss noch angepasst werden
                 height: PokemonData[i].height //umrechnung in m
             };
             PokemonObjects.push(pokemon);
