@@ -47,10 +47,52 @@ function renderOverlay(){ // Grobstrucktur
 
 function htmlOverlayBody(i){
   return `
-        <div class="content-header">
-          <h2>#${PokemonObjects[i].id}</h2>
-          <h2>${PokemonData[i].name}</h2>
-        </div>
+      <div class="overlay-body-flex">
+          <div class="content-header">
+              <h2>#${PokemonObjects[i].id}</h2>
+              <h2>${PokemonData[i].name}</h2>
+              <button class="exitBtn" onclick="toggleOverlay(${i})">X</button>
+          </div>
+          <div class="img-Container" id="overlay-img-container">
+              <img src="" class="overlay-img card-Img" id="overlay-img">
+          </div>
+          <div class="overlay-pokemon-stats">
+              <div class="overlay-stats" id="overlay-stats-1">
+              
+              </div>
+              <div class="overlay-stats" id="overlay-stats-2">
+              
+              </div>
+          </div>
+          <div class="switchBtn">
+              <button></button>
+              <button></button>
+          </div>
+
+      </div>
+        
   
+  `
+}
+
+function htmlOverlayPokemonStats(i){
+  return`  
+        <h3>height: ${PokemonObjects[i].height/10} m</h3>
+        <h3>weight: ${PokemonObjects[i].weight/10} kg</h3>
+        <h3>Typ: ${PokemonObjects[i].typ1}</h3>
+        <h3>Typ: ${PokemonObjects[i].typ2}</h3>
+        <h3>attack: ${PokemonObjects[i].height}</h3>
+        <h3>attack: ${PokemonObjects[i].height}</h3>
+  `
+}
+
+function htmlOverlayPokemonSpecificStats(){
+  return`
+        <h3>HP:</h3>
+        <h3>ATK:</h3>
+        <h3>DEF:</h3>
+        <h3>Special-ATK:</h3>
+        <h3>Special-DEF:</h3>
+        <h3>Speed:</h3>  
   `
 }

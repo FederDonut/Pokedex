@@ -5,7 +5,7 @@
 
 
 function renderPokemonOnOverlayHeader_appendChild(i){// Neuer Template Ansatz
-    let cardHeader = document.getElementById('overlay-card-header');
+    let cardHeader = document.getElementById('overlay-body');
     
     if(cardHeader){
         let headline1 = document.createElement('h2');
@@ -22,3 +22,7 @@ function renderPokemonOnOverlayHeader_appendChild(i){// Neuer Template Ansatz
     //renderOverlayCardColor(id)
 }
 
+function renderPokemonOverlayStats(i){
+    let stats = document.getElementById('overlay-stats-1');
+    stats.innerHTML = htmlOverlayPokemonStats(i);
+}

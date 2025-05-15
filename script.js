@@ -25,9 +25,7 @@ async function fetchBaseAPI(){
             console.error(error);
         }
     }
-    dataProcessing();
-    
-   
+    dataProcessing();   
     processingPokemonTypes();
     createPokemonObject();
     fetchPokemonIMG();
@@ -53,6 +51,18 @@ async function fetchPokemonIMG() {
          
     }
     
+}
+
+async function fetchOverlayPokemonImg(i){
+    let img_link = PokemonData[i].img_url;
+    try{
+        const overlayResponse = await fetch(img_link);
+        if(overlayResponse.ok){
+            renderOverlayPokemonImg(overlayResponse);
+        }
+    }catch(error){
+        console.error(error);
+    }
 }
 
 function renderPokemonObject(){
@@ -99,35 +109,20 @@ function toggleOverlay(i){
     let overlayRef = document.getElementById('overlay');
     overlayRef.classList.toggle('d_none');
     if(overlayRef.classList.contains('d_none')){
-        console.log(true,'d_none ist aktiv overlay nicht sichtbar ')
+        //console.log(true,'d_none ist aktiv overlay nicht sichtbar ')
         overlayRef.innerHTML="";
 
     }else{
-        console.log(false,'d_none ist inaktiv overlay sichtbar ')
+        //console.log(false,'d_none ist inaktiv overlay sichtbar ')
         overlayRef.innerHTML = renderOverlay();
         renderOverlayTypeColor(i);
         renderPokemonOnOverlayContent(i);
+        fetchOverlayPokemonImg(i);
+        renderPokemonOverlayStats(i);
+        //renderPokemonOnOverlayHeader_appendChild(i);
     }
 }
 
-//function toggleOverlay(i){ // warum tut diese funktionicht ?????
-//    let checksum;
-//    let overlayRef = document.getElementById('overlay');
-//    //let overlayContent = document.getElementById('overlay-card')
-//    overlayRef.classList.toggle('d_none');
-//    if(overlayRef.classList.contains('d-none')){
-//        console.log(true)
-//        overlayRef.innerHTML="";
-//        //overlayContent.innerHTML="";
-//    }else{
-//        console.log(false)
-//        console.log();
-//        overlayRef.innerHTML = renderOverlay();
-//        renderOverlayTypeColor(i)
-//        renderPokemonOnOverlayContent(i);
-//       
-//    }
-//}
 function preventBubbling (event){
     event.stopPropagation();   
 }
@@ -143,3 +138,12 @@ function renderOverlayTypeColor(i){
     console.log(pokeTyp)
     card.classList.toggle(pokeTyp);
 }
+
+function renderOverlayPokemonImg(overlayResponse){// Lädt die Bilder 
+    //console.log(imgResponse);
+    let spriete = document.getElementById('overlay-img');// wichtig kein , sondern +
+    spriete.innerHTML="";
+    spriete.src = overlayResponse.url 
+    
+};
+
