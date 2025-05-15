@@ -22,7 +22,33 @@ function renderPokemonOnOverlayHeader_appendChild(i){// Neuer Template Ansatz
     //renderOverlayCardColor(id)
 }
 
+function renderPokemonOnOverlayContent(i){
+    let content = document.getElementById('overlay-body');
+    content.innerHTML += htmlOverlayBody(i);
+}
+
+function renderOverlayTypeColor(i){
+    let card = document.getElementById('overlay-card');
+    let pokeTyp = PokemonObjects[i].typ1;
+    console.log(pokeTyp)
+    card.classList.toggle(pokeTyp);
+}
+
+function renderOverlayPokemonImg(overlayResponse){// Lädt die Bilder 
+    //console.log(imgResponse);
+    let spriete = document.getElementById('overlay-img');// wichtig kein , sondern +
+    spriete.innerHTML="";
+    spriete.src = overlayResponse.url 
+    
+};
+
+
 function renderPokemonOverlayStats(i){
     let stats = document.getElementById('overlay-stats-1');
     stats.innerHTML = htmlOverlayPokemonStats(i);
+}
+
+function renderPokemonOverlaySpecificStats(i){
+    let specificStats = document.getElementById('overlay-stats-2');
+    specificStats = htmlOverlayPokemonSpecificStats(i);
 }

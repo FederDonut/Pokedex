@@ -13,7 +13,6 @@ function init(){
 }
 
 async function fetchBaseAPI(){
-   
     for(index = 1; index <= counter; index++ ){
         try {
             const response = await fetch(BASE_URL+index);
@@ -27,11 +26,11 @@ async function fetchBaseAPI(){
     }
     dataProcessing();   
     processingPokemonTypes();
+    processingPokemonAbilitys();
+    processingPokemonStats()
     createPokemonObject();
     fetchPokemonIMG();
     renderPokemonObject();
-    
-       
 }
 
 async function fetchPokemonIMG() {
@@ -42,15 +41,11 @@ async function fetchPokemonIMG() {
             const imgResponse = await fetch(img_link);
             if(imgResponse.ok){
                 renderPokemonImg(imgResponse, id);
-                
-                //console.log(i);       
             }
         } catch (error) {
             console.error(error);
-        }
-         
+        }  
     }
-    
 }
 
 async function fetchOverlayPokemonImg(i){
@@ -119,6 +114,7 @@ function toggleOverlay(i){
         renderPokemonOnOverlayContent(i);
         fetchOverlayPokemonImg(i);
         renderPokemonOverlayStats(i);
+        renderPokemonOverlaySpecificStats(i);
         //renderPokemonOnOverlayHeader_appendChild(i);
     }
 }
@@ -127,23 +123,4 @@ function preventBubbling (event){
     event.stopPropagation();   
 }
 
-function renderPokemonOnOverlayContent(i){
-    let content = document.getElementById('overlay-body');
-    content.innerHTML += htmlOverlayBody(i);
-}
-
-function renderOverlayTypeColor(i){
-    let card = document.getElementById('overlay-card');
-    let pokeTyp = PokemonObjects[i].typ1;
-    console.log(pokeTyp)
-    card.classList.toggle(pokeTyp);
-}
-
-function renderOverlayPokemonImg(overlayResponse){// Lädt die Bilder 
-    //console.log(imgResponse);
-    let spriete = document.getElementById('overlay-img');// wichtig kein , sondern +
-    spriete.innerHTML="";
-    spriete.src = overlayResponse.url 
-    
-};
 

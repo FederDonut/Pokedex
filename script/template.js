@@ -81,18 +81,18 @@ function htmlOverlayPokemonStats(i){
         <h3>weight: ${PokemonObjects[i].weight/10} kg</h3>
         <h3>Typ: ${PokemonObjects[i].typ1}</h3>
         <h3>Typ: ${PokemonObjects[i].typ2}</h3>
-        <h3>attack: ${PokemonObjects[i].height}</h3>
-        <h3>attack: ${PokemonObjects[i].height}</h3>
+        <h3>attack: ${PokemonObjects[i].ability1}</h3>
+        <h3>attack: ${PokemonObjects[i].ability2}</h3>
   `
 }
 
-function htmlOverlayPokemonSpecificStats(){
+function htmlOverlayPokemonSpecificStats(i){
   return`
-        <h3>HP:</h3>
-        <h3>ATK:</h3>
-        <h3>DEF:</h3>
-        <h3>Special-ATK:</h3>
-        <h3>Special-DEF:</h3>
-        <h3>Speed:</h3>  
+        <h3>HP: ${PokemonObjects[i].hp}</h3>
+        <h3>ATK: ${PokemonObjects[i].atk}</h3>
+        <h3>DEF: ${PokemonObjects[i].def}</h3>
+        <h3>Special-ATK: ${PokemonObjects[i].s_atk}</h3>
+        <h3>Special-DEF: ${PokemonObjects[i].s_dev}</h3>
+        <h3>Speed: ${PokemonObjects[i].speed}</h3>  
   `
 }

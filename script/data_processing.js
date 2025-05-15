@@ -1,6 +1,8 @@
 
 let rowData = [];
 let PokemonData =[];// Name + BasisURL
+let PokemonAbilitys =[];
+let PokemonStats = [];
 let PokemonTypes = [];
 let PokemonObjects =[]
 
@@ -11,7 +13,7 @@ let PokemonObjects =[]
 function dataProcessing(){//Datenverarbeitung
     //console.log(rowData);
     for(index = 0; index < rowData.length; index++){
-        //console.log(rowData[i].name);
+        //console.log(rowData[index].abiities);
         //console.log(rowData[index].id);
         //console.log(rowData[index].sprites.front_default);
         //console.log(rowData[index].types)
@@ -21,7 +23,9 @@ function dataProcessing(){//Datenverarbeitung
             types: rowData[index].types,
             img_url: rowData[index].sprites.front_default,
             height: rowData[index].height,
-            weight: rowData[index].weight
+            weight: rowData[index].weight,
+            ability: rowData[index].abilities,
+            stats: rowData[index].stats
             
         });
     }
@@ -43,17 +47,52 @@ function processingPokemonTypes(){ // Datenverarbeitung
     //renderPokemonTypes();         
     //(console.log(PokemonTypes);
 }
+function processingPokemonAbilitys(){
+    for(i = 0; i< PokemonData.length;i++){
+        const test = PokemonData[i].ability;
+        //console.log(test);
+        const pokemonId = PokemonData[i].id;
+        //console.log(pokemonId);
+        const abilityArray = Object.values(PokemonData[i].ability).map(abilityName => abilityName.ability.name)
+        //console.log(abilityArray);
+        PokemonAbilitys.push({
+            id: pokemonId,
+            attack1: abilityArray[0],
+            attack2: abilityArray[1]
+        })
+    }
+    //console.log(PokemonAbilitys);
+}
+
+function processingPokemonStats(){
+    for(i = 0; i<PokemonData.length; i++){
+        let test = PokemonData[i].stats;
+        //console.log(test);
+        const pokemonId = PokemonData[i].id;
+        const statsArrayValue = Object.values(PokemonData[i].stats).map(statsValue => statsValue.base_stat)
+        //console.log(statsArrayName);
+        //console.log(statsArrayValue);
+        PokemonStats.push({
+            id: pokemonId,
+            hp: statsArrayValue[0],
+            atk: statsArrayValue[1],
+            def: statsArrayValue[2],
+            s_atk: statsArrayValue[3],
+            s_def: statsArrayValue[4],
+            speed: statsArrayValue[5] 
+        })
+        
+        
+
+    }
+    //console.table(PokemonStats);
+}
 
 function createPokemonObject(){
-   
-    //console.table(PokemonData)
-    //console.table(PokemonTypes)
     for(i = 0; i<PokemonData.length;i++){
-        //console.log(PokemonData[i].id)
-        //console.log(PokemonTypes[i].id)
-        //console.log(PokemonTypes[i].typ1)
-        //console.log(PokemonTypes[i].typ2)
-        if(PokemonData[i].id == PokemonTypes[i].id){
+        // !! --> Primärschlüssel: PokemonData[i].id <-- !!
+        if(PokemonData[i].id == PokemonTypes[i].id && PokemonData[i].id == PokemonAbilitys[i].id
+            && PokemonData[i].id == PokemonStats[i].id){
             let pokemon= {
                 name: PokemonData[i].name, 
                 id: PokemonData[i].id,
@@ -61,7 +100,15 @@ function createPokemonObject(){
                 typ2: PokemonTypes[i].typ2,
                 img_url: PokemonData[i].img_url,
                 weight: PokemonData[i].weight ,// angabe in kg muss noch angepasst werden
-                height: PokemonData[i].height //umrechnung in m
+                height: PokemonData[i].height, //umrechnung in m
+                ability1: PokemonAbilitys[i].attack1,
+                ability2: PokemonAbilitys[i].attack2,
+                hp: PokemonStats[i].hp,
+                atk: PokemonStats[i].atk,
+                def: PokemonStats[i].def,
+                s_atk: PokemonStats[i].s_atk,
+                s_def: PokemonStats[i].s_def,
+                speed: PokemonStats[i].speed
             };
             PokemonObjects.push(pokemon);
         }else{
@@ -69,5 +116,5 @@ function createPokemonObject(){
         }
         
     }
-   //console.table(PokemonObjects);       
+   console.table(PokemonObjects);       
 }
