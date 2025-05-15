@@ -60,7 +60,7 @@ function htmlOverlayBody(i){
               <div class="overlay-stats" id="overlay-stats-1">
               
               </div>
-              <div class="overlay-stats" id="overlay-stats-2">
+              <div class="overlay-stats" id="overlay-test-2">
               
               </div>
           </div>
@@ -86,7 +86,7 @@ function htmlOverlayPokemonStats(i){
   `
 }
 
-function htmlOverlayPokemonSpecificStats(i){
+function htmlOverlaytest(i){
   return`
         <h3>HP: ${PokemonObjects[i].hp}</h3>
         <h3>ATK: ${PokemonObjects[i].atk}</h3>
