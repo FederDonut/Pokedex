@@ -114,7 +114,8 @@ function toggleOverlay(i){
         renderPokemonOnOverlayContent(i);
         fetchOverlayPokemonImg(i);
         renderPokemonOverlayStats(i);
-        renderPokemonOverlaySpecificStats(i);
+        //renderPokemonOverlaySpecificStats(i);
+        calculatePokemonStats(i);
         //renderPokemonOnOverlayHeader_appendChild(i);
     }
 }

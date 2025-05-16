@@ -39,4 +39,11 @@
 .card-Img:hover{/*spielerei*/
     background-image: linear-gradient(45deg, #141111, transparent); 
 }
+/* Progressbar Anpassungen*/
 
+.s-atk{
+    background-color: rgba(251, 0, 0, 0.56) !important
+}
+.s-def{
+    background-color: rgba(63, 60, 58, 0.797) !important;
+}

@@ -124,3 +124,6 @@ header{
     border-radius: 25px;
     border-color: black;
 }
+.specific-stats{
+    width: 300px;
+}

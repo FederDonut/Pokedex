@@ -60,7 +60,7 @@ function htmlOverlayBody(i){
               <div class="overlay-stats" id="overlay-stats-1">
               
               </div>
-              <div class="overlay-stats" id="overlay-test-2">
+              <div class="overlay-stats" id="overlay-stats-2">
               
               </div>
           </div>
@@ -86,13 +86,43 @@ function htmlOverlayPokemonStats(i){
   `
 }
 
-function htmlOverlaytest(i){
+function htmlOverlayPokemonSpecificStats(i,hp,atk,def,s_atk,s_def,speed){
   return`
-        <h3>HP: ${PokemonObjects[i].hp}</h3>
-        <h3>ATK: ${PokemonObjects[i].atk}</h3>
-        <h3>DEF: ${PokemonObjects[i].def}</h3>
-        <h3>Special-ATK: ${PokemonObjects[i].s_atk}</h3>
-        <h3>Special-DEF: ${PokemonObjects[i].s_dev}</h3>
-        <h3>Speed: ${PokemonObjects[i].speed}</h3>  
+        <div class="specific-stats">
+            <h3>HP: ${PokemonObjects[i].hp}</h3>
+            <div class="progress" role="progressbar" aria-label="Success example" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
+              <div class="progress-bar text-bg-success" style="width: ${hp}%"></div>
+            </div>
+        </div>
+        <div class="specific-stats">
+           <h3>ATK: ${PokemonObjects[i].atk}</h3>
+           <div class="progress" role="progressbar" aria-label="Danger example" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
+               <div class="progress-bar bg-danger" style="width: ${atk}%"></div>
+           </div>
+        </div>
+        <div class="specific-stats">
+          <h3>DEF: ${PokemonObjects[i].def}</h3>
+          <div class="progress" role="progressbar" aria-label="Warning example" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">
+              <div class="progress-bar bg-secondary" style="width: ${def}%"></div>
+          </div>
+        </div>
+        <div class="specific-stats">
+          <h3>Special-ATK: ${PokemonObjects[i].s_atk}</h3>
+          <div class="progress" role="progressbar" aria-label="Warning example" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">
+              <div class="progress-bar progress-bar-striped progress-bar-animated bg-warning s-atk" style="width: ${s_atk}%"></div>
+          </div>
+        </div>
+        <div class="specific-stats">
+          <h3>Special-DEF: ${PokemonObjects[i].s_def}</h3>
+          <div class="progress" role="progressbar" aria-label="Warning example" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">
+              <div class="progress-bar progress-bar-striped progress-bar-animated bg-warning s-def" style="width: ${s_def}%"></div>
+          </div>
+        </div>
+        <div class="specific-stats">
+          <h3>Speed: ${PokemonObjects[i].speed}</h3> 
+          <div class="progress" role="progressbar" aria-label="Warning example" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">
+              <div class="progress-bar bg-warning" style="width: ${speed}%"></div>
+          </div>
+        </div> 
   `
 }

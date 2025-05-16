@@ -6,6 +6,18 @@ let PokemonStats = [];
 let PokemonTypes = [];
 let PokemonObjects =[]
 
+//Quelle ChatGpt
+let PokemonMaxStatsValue = [
+    {
+        hp: 255,
+        atk: 200,
+        def: 230,
+        s_atk: 200,
+        s_def: 230,
+        speed: 200
+    }
+]
+
 
 
 
@@ -117,4 +129,16 @@ function createPokemonObject(){
         
     }
    console.table(PokemonObjects);       
+}
+
+function calculatePokemonStats(i){
+    console.table(PokemonMaxStatsValue);
+    let hp = Math.ceil((PokemonObjects[i].hp*100) / PokemonMaxStatsValue[0].hp);
+    let atk =Math.ceil((PokemonObjects[i].atk*100) /PokemonMaxStatsValue[0].atk);
+    let def = Math.ceil((PokemonObjects[i].def*100) /PokemonMaxStatsValue[0].def)
+    let s_atk = Math.ceil((PokemonObjects[i].s_atk*100) /PokemonMaxStatsValue[0].s_atk)
+    let s_def = Math.ceil((PokemonObjects[i].s_def*100) /PokemonMaxStatsValue[0].s_def)
+    let speed = Math.ceil((PokemonObjects[i].speed*100) /PokemonMaxStatsValue[0].speed)
+    console.log(hp,atk,def,s_atk,s_def,speed);
+    renderPokemonOverlaySpecificStats(i, hp,atk,def,s_atk,s_def,speed);   
 }

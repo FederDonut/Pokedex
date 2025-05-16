@@ -48,8 +48,8 @@ function renderPokemonOverlayStats(i){
     stats.innerHTML = htmlOverlayPokemonStats(i);
 }
 
-function renderPokemonOverlaySpecificStats(i){// muss getestet werden 
-    let stats = document.getElementById('overlay-test-2');
-    stats += htmlOverlaytest(i);
+function renderPokemonOverlaySpecificStats(i,hp,atk,def,s_atk,s_def,speed ){// muss getestet werden 
+    let stats = document.getElementById('overlay-stats-2');
+    stats.innerHTML += htmlOverlayPokemonSpecificStats(i,hp,atk,def,s_atk,s_def,speed);
     // wird aktuell nicht gerendert 
 }
