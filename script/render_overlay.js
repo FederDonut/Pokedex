@@ -46,6 +46,7 @@ function renderOverlayPokemonImg(overlayResponse){// Lädt die Bilder
 function renderPokemonOverlayStats(i){
     let stats = document.getElementById('overlay-stats-1');
     stats.innerHTML = htmlOverlayPokemonStats(i);
+    checkOverlayTyps(i);
 }
 
 function renderPokemonOverlaySpecificStats(i,hp,atk,def,s_atk,s_def,speed ){// muss getestet werden 

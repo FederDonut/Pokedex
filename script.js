@@ -108,15 +108,17 @@ function toggleOverlay(i){
         overlayRef.innerHTML="";
 
     }else{
-        //console.log(false,'d_none ist inaktiv overlay sichtbar ')
+        //console.log(false,'d_none ist inaktiv overlay sichtbar')
         overlayRef.innerHTML = renderOverlay();
         renderOverlayTypeColor(i);
+       
         renderPokemonOnOverlayContent(i);
+        
         fetchOverlayPokemonImg(i);
         renderPokemonOverlayStats(i);
-        //renderPokemonOverlaySpecificStats(i);
+        checkOverlayTyps(i);
         calculatePokemonStats(i);
-        //renderPokemonOnOverlayHeader_appendChild(i);
+        
     }
 }
 
@@ -124,4 +126,14 @@ function preventBubbling (event){
     event.stopPropagation();   
 }
 
-
+function checkOverlayTyps(i){
+    let overlayTyp = document.getElementById('overlay-typ'+PokemonObjects[i].id);
+    console.log(PokemonObjects[i].id)
+    if(PokemonObjects[i].typ2 == "undefined"){
+        console.log('test')
+        overlayTyp.innerHTML="";
+    }else{
+        console.log('else')
+        
+    }
+}

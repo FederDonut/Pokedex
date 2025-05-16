@@ -80,7 +80,7 @@ function htmlOverlayPokemonStats(i){
         <h3>height: ${PokemonObjects[i].height/10} m</h3>
         <h3>weight: ${PokemonObjects[i].weight/10} kg</h3>
         <h3>Typ: ${PokemonObjects[i].typ1}</h3>
-        <h3>Typ: ${PokemonObjects[i].typ2}</h3>
+        <h3 id="overlay-typ${PokemonObjects[i].id}">Typ: ${PokemonObjects[i].typ2}</h3>
         <h3>attack: ${PokemonObjects[i].ability1}</h3>
         <h3>attack: ${PokemonObjects[i].ability2}</h3>
   `
