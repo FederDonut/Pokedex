@@ -4,7 +4,7 @@
 
 
 const BASE_URL = "https://pokeapi.co/api/v2/pokemon/"
-let counter = 15;// Gibt an wie viele Pokemon im Pokedex geladen werden 
+let counter = 25;// Gibt an wie viele Pokemon im Pokedex geladen werden 
 
 
 
@@ -111,14 +111,10 @@ function toggleOverlay(i){
         //console.log(false,'d_none ist inaktiv overlay sichtbar')
         overlayRef.innerHTML = renderOverlay();
         renderOverlayTypeColor(i);
-       
         renderPokemonOnOverlayContent(i);
-        
         fetchOverlayPokemonImg(i);
         renderPokemonOverlayStats(i);
-        checkOverlayTyps(i);
         calculatePokemonStats(i);
-        
     }
 }
 
@@ -126,14 +122,43 @@ function preventBubbling (event){
     event.stopPropagation();   
 }
 
-function checkOverlayTyps(i){
-    let overlayTyp = document.getElementById('overlay-typ'+PokemonObjects[i].id);
-    console.log(PokemonObjects[i].id)
-    if(PokemonObjects[i].typ2 == "undefined"){
-        console.log('test')
-        overlayTyp.innerHTML="";
+function switchBtnLeft(i){
+    let BtnLeft = document.getElementById('overlay');
+    if(i >0){
+        BtnLeft.innerHTML= renderOverlay();
+        renderOverlayTypeColor(i-1);
+        renderPokemonOnOverlayContent(i-1);
+        fetchOverlayPokemonImg(i-1);
+        renderPokemonOverlayStats(i-1);
+        calculatePokemonStats(i-1);
     }else{
-        console.log('else')
-        
+        i=counter-1;
+        BtnLeft.innerHTML= renderOverlay();
+        renderOverlayTypeColor(i);
+        renderPokemonOnOverlayContent(i);
+        fetchOverlayPokemonImg(i);
+        renderPokemonOverlayStats(i);
+        calculatePokemonStats(i);
     }
+}
+
+function switchBtnRight(i){
+    let BtnRight = document.getElementById('overlay')
+    if(i < counter -1){
+        BtnRight.innerHTML = renderOverlay();
+        renderOverlayTypeColor(i+1);
+        renderPokemonOnOverlayContent(i+1);
+        fetchOverlayPokemonImg(i+1);
+        renderPokemonOverlayStats(i+1);
+        calculatePokemonStats(i+1);
+    }else{
+        i=0;
+        BtnRight.innerHTML = renderOverlay();
+        renderOverlayTypeColor(i);
+        renderPokemonOnOverlayContent(i);
+        fetchOverlayPokemonImg(i);
+        renderPokemonOverlayStats(i);
+        calculatePokemonStats(i);
+    }
+        
 }

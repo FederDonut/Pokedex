@@ -1,10 +1,13 @@
 
 let rowData = [];
+
 let PokemonData =[];// Name + BasisURL
 let PokemonAbilitys =[];
 let PokemonStats = [];
+
 let PokemonTypes = [];
-let PokemonObjects =[]
+
+let PokemonObjects =[]; // Finaler Datensatz
 
 //Quelle ChatGpt
 let PokemonMaxStatsValue = [
@@ -16,7 +19,7 @@ let PokemonMaxStatsValue = [
         s_def: 230,
         speed: 200
     }
-]
+]// maximal Werte für Progressbar
 
 
 

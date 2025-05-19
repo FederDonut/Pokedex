@@ -65,8 +65,8 @@ function htmlOverlayBody(i){
               </div>
           </div>
           <div class="switchBtn">
-              <button></button>
-              <button></button>
+              <button id="switchBtnLeft" onclick="switchBtnLeft(${i})"><</button>
+              <button id="switchBtnRight" onclick="switchBtnRight(${i})">></button>
           </div>
 
       </div>
@@ -121,7 +121,7 @@ function htmlOverlayPokemonSpecificStats(i,hp,atk,def,s_atk,s_def,speed){
         <div class="specific-stats">
           <h3>Speed: ${PokemonObjects[i].speed}</h3> 
           <div class="progress" role="progressbar" aria-label="Warning example" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">
-              <div class="progress-bar bg-warning" style="width: ${speed}%"></div>
+              <div class="progress-bar bg-dark" style="width: ${speed}%"></div>
           </div>
         </div> 
   `
