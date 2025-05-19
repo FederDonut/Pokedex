@@ -135,7 +135,7 @@ function createPokemonObject(){
 }
 
 function calculatePokemonStats(i){
-    console.table(PokemonMaxStatsValue);
+    //console.table(PokemonMaxStatsValue);
     let hp = Math.ceil((PokemonObjects[i].hp*100) / PokemonMaxStatsValue[0].hp);
     let atk =Math.ceil((PokemonObjects[i].atk*100) /PokemonMaxStatsValue[0].atk);
     let def = Math.ceil((PokemonObjects[i].def*100) /PokemonMaxStatsValue[0].def)

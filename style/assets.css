@@ -47,3 +47,48 @@
 .s-def{
     background-color: rgba(63, 60, 58, 0.797) !important;
 }
+
+
+.choosen-pokemon {
+    
+    font-size: 1.1rem;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    overflow: hidden;
+    transition: all 0.4s ease;
+    z-index: 1;
+  }
+  
+  .neon-pulse {
+    border: 2px solid rgb(254, 254, 254);
+    box-shadow: 0 0 10px rgba(217, 220, 220, 0.3);
+    overflow: visible;
+  }
+  
+  .neon-pulse::before,
+  .neon-pulse::after {
+    content: "";
+    position: absolute;
+    inset: -4px;
+    border: 2px solid rgb(255, 255, 255);
+    border-radius: inherit;
+    animation: pulseOut 2s ease-out infinite;
+    opacity: 0;
+  }
+  
+  .neon-pulse::after {
+    animation-delay: 1s;
+  }
+  
+  @keyframes pulseOut {
+    0% {
+      transform: scale(1);
+      opacity: 1;
+    }
+    100% {
+      transform: scale(1.1);
+      opacity: 0;
+    }
+  }
+  
