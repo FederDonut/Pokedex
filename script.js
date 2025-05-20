@@ -5,7 +5,8 @@
 
 const BASE_URL = "https://pokeapi.co/api/v2/pokemon/"
 let counter = 25;// Gibt an wie viele Pokemon im Pokedex geladen werden 
-
+let loadedPokemonTotal = counter;
+let loadedPokemon = 0
 
 
 function init(){
@@ -13,6 +14,7 @@ function init(){
 }
 
 async function fetchBaseAPI(){
+    showLoadingSpinner();
     for(index = 1; index <= counter; index++ ){
         try {
             const response = await fetch(BASE_URL+index);
@@ -31,6 +33,9 @@ async function fetchBaseAPI(){
     createPokemonObject();
     fetchPokemonIMG();
     renderPokemonObject();
+    console.log(loadedPokemon);
+    
+   
 }
 
 async function fetchPokemonIMG() {
@@ -60,45 +65,13 @@ async function fetchOverlayPokemonImg(i){
     }
 }
 
-async function findPokemon() {
-    let serach = document.getElementById('search')
-    let content = document.getElementById('content')
-    let input = serach.value;
-    console.log(input);
-    try{
-        const searchResponse = await fetch(BASE_URL+input);
-        if(searchResponse.ok){
-            let data = await searchResponse.json();
-            //console.log(data.id);
-            //console.log(data.name);
-            //console.log(counter);
-            counter = data.id;
-            //console.log(counter);
-            //content.innerHTML="";
-            rowData=[];
-            PokemonData=[];
-            PokemonAbilitys=[];
-            PokemonStats=[];
-            PokemonTypes=[];
-            PokemonObjects=[];
-            fetchBaseAPI();
-            setTimeout(markingChoosenPokemon,2000);
-            
-        }
-    }catch(error){
-        console.error(error);
-    }  
-}
 
-function markingChoosenPokemon(){
+function removeMarkingChoosenPokemon(){
     let marker = document.getElementById('card'+counter);
-    console.log(counter);
-    console.log(marker)
     if(marker){
-        marker.classList.add('choosen-pokemon');
-        marker.classList.add('neon-pulse');
+        marker.classList.remove('choosen-pokemon');
+        marker.classList.remove('neon-pulse');
     }
-    
 }
 
 function renderPokemonObject(){
@@ -122,7 +95,21 @@ function renderPokemonImg(imgResponse ,id){// Lädt die Bilder
     //console.log(imgResponse);
     let spriete = document.getElementById('Pokemon-Img'+id);// wichtig kein , sondern +
     spriete.innerHTML="";
-    spriete.src = imgResponse.url 
+    spriete.src = imgResponse.url
+    spriete.onload= function(){ // Bild ist vollständig geladen onload()
+        loadedPokemon ++
+        console.log(`Bild für Pokemon ${id} geladen (${loadedPokemon}/${loadedPokemonTotal})`);
+        if(loadedPokemon === loadedPokemonTotal){
+            hiedLoadingSpinner();
+        }
+    }
+    spriete.onerror = function(){
+        console.error(`Fehler beim Laden des Bildes für Pokemon ${id}`);
+        loadedPokemon++; 
+        if(loadedPokemon === loadedPokemonTotal){
+            hiedLoadingSpinner();
+        }
+    }; 
     
 };
 
@@ -156,6 +143,7 @@ function toggleOverlay(i){
         fetchOverlayPokemonImg(i);
         renderPokemonOverlayStats(i);
         calculatePokemonStats(i);
+        removeMarkingChoosenPokemon();
     }
 }
 
@@ -202,4 +190,42 @@ function switchBtnRight(i){
         calculatePokemonStats(i);
     }
         
+}
+
+async function findPokemon() {
+    let serach = document.getElementById('search')
+    let input = serach.value;
+    loadedPokemon = 0;
+    console.log(input);
+    try{
+        const searchResponse = await fetch(BASE_URL+input);
+        if(searchResponse.ok){
+            let data = await searchResponse.json();
+            counter = data.id;
+            loadedPokemonTotal = data.id;     
+            rowData=[];
+            PokemonData=[];
+            PokemonAbilitys=[];
+            PokemonStats=[];
+            PokemonTypes=[];
+            PokemonObjects=[];
+            fetchBaseAPI();
+            setTimeout(markingChoosenPokemon,2000);
+            
+        }
+    }catch(error){
+        console.error(error);
+    }  
+}
+
+function markingChoosenPokemon(){
+    let marker = document.getElementById('card'+counter);
+    console.log(counter);
+    //console.log(marker)
+    if(marker){
+        marker.classList.add('choosen-pokemon');
+        marker.classList.add('neon-pulse');
+         
+    }
+   
 }

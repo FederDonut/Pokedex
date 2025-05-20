@@ -11,7 +11,6 @@ function renderPokemonOnOverlayContent(i){
 function renderOverlayTypeColor(i){
     let card = document.getElementById('overlay-card');
     let pokeTyp = PokemonObjects[i].typ1;
-    //console.log(pokeTyp)
     card.classList.toggle(pokeTyp);
 }
 
@@ -34,4 +33,16 @@ function renderPokemonOverlaySpecificStats(i,hp,atk,def,s_atk,s_def,speed ){// m
     let stats = document.getElementById('overlay-stats-2');
     stats.innerHTML += htmlOverlayPokemonSpecificStats(i,hp,atk,def,s_atk,s_def,speed);
     // wird aktuell nicht gerendert 
+}
+
+function showLoadingSpinner(){
+    console.log('Ladebildschirmm aktiv ')
+    let loadinsgspinner = document.getElementById('overlay2');
+    loadinsgspinner.classList.remove('d_none');
+
+}
+function hiedLoadingSpinner(){
+    console.log('Ladebildschirmm entfernt')
+    let loadinsgspinner = document.getElementById('overlay2');
+    loadinsgspinner.classList.add('d_none');
 }
