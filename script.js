@@ -6,16 +6,20 @@
 const BASE_URL = "https://pokeapi.co/api/v2/pokemon/"
 let counter = 25;// Gibt an wie viele Pokemon im Pokedex geladen werden 
 let loadedPokemonTotal = counter;
-let loadedPokemon = 0
+let loadedPokemon = 0;
+
 
 
 function init(){
-    fetchBaseAPI();   
+    fetchBaseAPI();
+    renderMoreContent()
+       
 }
 
-async function fetchBaseAPI(){
+async function fetchBaseAPI(startIndex = 1, endIndex = counter){
     showLoadingSpinner();
-    for(index = 1; index <= counter; index++ ){
+    const startIndexOfNewData = rowData.length // Notwendig für die LodingFunktin 
+    for(index = startIndex; index <= endIndex; index++ ){
         try {
             const response = await fetch(BASE_URL+index);
             if(response.ok){
@@ -26,20 +30,17 @@ async function fetchBaseAPI(){
             console.error(error);
         }
     }
-    dataProcessing();   
-    processingPokemonTypes();
-    processingPokemonAbilitys();
-    processingPokemonStats()
-    createPokemonObject();
-    fetchPokemonIMG();
-    renderPokemonObject();
-    console.log(loadedPokemon);
-    
-   
+    dataProcessing(startIndexOfNewData);   
+    processingPokemonTypes(startIndexOfNewData);
+    processingPokemonAbilitys(startIndexOfNewData);
+    processingPokemonStats(startIndexOfNewData)
+    createPokemonObject(startIndexOfNewData);
+    fetchPokemonIMG(startIndexOfNewData);
+    renderPokemonObject(startIndexOfNewData); 
 }
 
-async function fetchPokemonIMG() {
-    for(let i =0; i < counter; i++){
+async function fetchPokemonIMG(startIndex =0 ) {
+    for(let i =startIndex; i < PokemonObjects.length; i++){
         let img_link = PokemonObjects[i].img_url;
         let id = PokemonObjects[i].id
         try {
@@ -74,10 +75,10 @@ function removeMarkingChoosenPokemon(){
     }
 }
 
-function renderPokemonObject(){
+function renderPokemonObject(startIndex = 0){
     let contentRef = document.getElementById('content');
-    contentRef.innerHTML="";
-    for(i = 0; i< PokemonObjects.length; i++){
+    //contentRef.innerHTML="";
+    for(i = startIndex; i< PokemonObjects.length; i++){
         let name = PokemonObjects[i].name;
         let id = PokemonObjects[i].id;
         let typ1 = PokemonObjects[i].typ1
@@ -94,7 +95,7 @@ function renderPokemonObject(){
 function renderPokemonImg(imgResponse ,id){// Lädt die Bilder 
     //console.log(imgResponse);
     let spriete = document.getElementById('Pokemon-Img'+id);// wichtig kein , sondern +
-    spriete.innerHTML="";
+    //spriete.innerHTML="";
     spriete.src = imgResponse.url
     spriete.onload= function(){ // Bild ist vollständig geladen onload()
         loadedPokemon ++
@@ -112,6 +113,10 @@ function renderPokemonImg(imgResponse ,id){// Lädt die Bilder
     }; 
     
 };
+function renderMoreContent(){
+    let loadBtn = document.getElementById('more-content');
+    loadBtn.innerHTML =  htmlLoadButton();
+}
 
 function backgroundColor(id){
     let type = document.getElementById('main-type'+id);
@@ -194,12 +199,14 @@ function switchBtnRight(i){
 
 async function findPokemon() {
     let serach = document.getElementById('search')
+    let contentRef = document.getElementById('content');
     let input = serach.value;
     loadedPokemon = 0;
     console.log(input);
     try{
         const searchResponse = await fetch(BASE_URL+input);
         if(searchResponse.ok){
+            contentRef.innerHTML="";
             let data = await searchResponse.json();
             counter = data.id;
             loadedPokemonTotal = data.id;     
@@ -229,3 +236,24 @@ function markingChoosenPokemon(){
     }
    
 }
+
+function loadMorePokemon(){
+   
+    let newStartIndex = counter +1 ;
+    counter +=20;
+    let newEndIndex = counter
+    loadedPokemonTotal = 20;
+    
+    
+    loadedPokemon = 0
+    console.log('StartIndex',newStartIndex,
+        'EndIndex' ,newEndIndex,
+        'Gibt an wie viele neue Pokemon geladen werden', loadedPokemonTotal,
+        'Gibt an wie viele Pokemon geladen sind', loadedPokemon
+    ); 
+     
+   
+    fetchBaseAPI(newStartIndex, newEndIndex);
+
+}
+

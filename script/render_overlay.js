@@ -26,23 +26,25 @@ function renderOverlayPokemonImg(overlayResponse){// Lädt die Bilder
 function renderPokemonOverlayStats(i){
     let stats = document.getElementById('overlay-stats-1');
     stats.innerHTML = htmlOverlayPokemonStats(i);
-    //checkOverlayTyps(i); // selbes Problem wie zuletzt mit der toggle function 
+     
 }
 
 function renderPokemonOverlaySpecificStats(i,hp,atk,def,s_atk,s_def,speed ){// muss getestet werden 
     let stats = document.getElementById('overlay-stats-2');
     stats.innerHTML += htmlOverlayPokemonSpecificStats(i,hp,atk,def,s_atk,s_def,speed);
-    // wird aktuell nicht gerendert 
+   
 }
 
+
+//-------------------------------LoadingScreen---------------------
 function showLoadingSpinner(){
-    console.log('Ladebildschirmm aktiv ')
+    //console.log('Ladebildschirmm aktiv ')
     let loadinsgspinner = document.getElementById('overlay2');
     loadinsgspinner.classList.remove('d_none');
 
 }
 function hiedLoadingSpinner(){
-    console.log('Ladebildschirmm entfernt')
+    //console.log('Ladebildschirmm entfernt')
     let loadinsgspinner = document.getElementById('overlay2');
     loadinsgspinner.classList.add('d_none');
 }

@@ -29,7 +29,8 @@ function htmlLayout(id,name,typ1,typ2,height,weight,i){
                 </div>
                 
               </div>
-            </div> 
+            </div>
+            
     `
 }
 
@@ -126,5 +127,14 @@ function htmlOverlayPokemonSpecificStats(i,hp,atk,def,s_atk,s_def,speed){
               <div class="progress-bar bg-dark" style="width: ${speed}%"></div>
           </div>
         </div> 
+  `
+}
+
+function htmlLoadButton(){
+  return`
+        
+        <button class="loadBtn" onclick="loadMorePokemon()">load more Pokemon</button>
+        
+
   `
 }

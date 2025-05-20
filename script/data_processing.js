@@ -25,9 +25,9 @@ let PokemonMaxStatsValue = [
 
 
 
-function dataProcessing(){//Datenverarbeitung
+function dataProcessing(startIndexProcessing = 0){//Datenverarbeitung
     //console.log(rowData);
-    for(index = 0; index < rowData.length; index++){
+    for(index = startIndexProcessing; index < rowData.length; index++){
         //console.log(rowData[index].abiities);
         //console.log(rowData[index].id);
         //console.log(rowData[index].sprites.front_default);
@@ -48,8 +48,8 @@ function dataProcessing(){//Datenverarbeitung
  
 }
 
-function processingPokemonTypes(){ // Datenverarbeitung
-    for(i =0; i< PokemonData.length;i++){
+function processingPokemonTypes(startIndexProcessing = 0){ // Datenverarbeitung
+    for(i =startIndexProcessing; i< PokemonData.length;i++){
         const pokemonId = PokemonData[i].id;
         const typesArray = Object.values(PokemonData[i].types).map(typeInfo => typeInfo.type.name)
         //console.log(typesArray)        
@@ -62,8 +62,8 @@ function processingPokemonTypes(){ // Datenverarbeitung
     //renderPokemonTypes();         
     //(console.log(PokemonTypes);
 }
-function processingPokemonAbilitys(){
-    for(i = 0; i< PokemonData.length;i++){
+function processingPokemonAbilitys(startIndexProcessing = 0){
+    for(i = startIndexProcessing; i< PokemonData.length;i++){
         const test = PokemonData[i].ability;
         //console.log(test);
         const pokemonId = PokemonData[i].id;
@@ -79,8 +79,8 @@ function processingPokemonAbilitys(){
     //console.log(PokemonAbilitys);
 }
 
-function processingPokemonStats(){
-    for(i = 0; i<PokemonData.length; i++){
+function processingPokemonStats(startIndexProcessing = 0){
+    for(i = startIndexProcessing; i<PokemonData.length; i++){
         let test = PokemonData[i].stats;
         //console.log(test);
         const pokemonId = PokemonData[i].id;
@@ -103,8 +103,8 @@ function processingPokemonStats(){
     //console.table(PokemonStats);
 }
 
-function createPokemonObject(){
-    for(i = 0; i<PokemonData.length;i++){
+function createPokemonObject(startIndexProcessing = 0){
+    for(i = startIndexProcessing; i<PokemonData.length;i++){
         // !! --> Primärschlüssel: PokemonData[i].id <-- !!
         if(PokemonData[i].id == PokemonTypes[i].id && PokemonData[i].id == PokemonAbilitys[i].id
             && PokemonData[i].id == PokemonStats[i].id){
