@@ -13,11 +13,11 @@ let loadedPokemon = 0;
 function init(){
     fetchBaseAPI();
     renderMoreContent()
-       
+    showLoadingSpinner();
 }
 
 async function fetchBaseAPI(startIndex = 1, endIndex = counter){
-    showLoadingSpinner();
+    //showLoadingSpinner();
     const startIndexOfNewData = rowData.length // Notwendig für die LodingFunktin 
     for(index = startIndex; index <= endIndex; index++ ){
         try {
@@ -87,13 +87,13 @@ function renderPokemonObject(startIndex = 0){
         let weight= PokemonData[i].weight/10
         contentRef.innerHTML += htmlLayout(id,name,typ1,typ2,height,weight,i);
         backgroundColor(id);
-        checkTypes(id);
-            
+        checkTypes(id);      
     }  
 };
 
 function renderPokemonImg(imgResponse ,id){// Lädt die Bilder 
     //console.log(imgResponse);
+    //showLoadingSpinner();
     let spriete = document.getElementById('Pokemon-Img'+id);// wichtig kein , sondern +
     //spriete.innerHTML="";
     spriete.src = imgResponse.url
@@ -142,13 +142,14 @@ function toggleOverlay(i){
 
     }else{
         //console.log(false,'d_none ist inaktiv overlay sichtbar')
+        removeMarkingChoosenPokemon();
         overlayRef.innerHTML = renderOverlay();
         renderOverlayTypeColor(i);
         renderPokemonOnOverlayContent(i);
         fetchOverlayPokemonImg(i);
         renderPokemonOverlayStats(i);
         calculatePokemonStats(i);
-        removeMarkingChoosenPokemon();
+        
     }
 }
 
@@ -201,21 +202,17 @@ async function findPokemon() {
     let serach = document.getElementById('search')
     let contentRef = document.getElementById('content');
     let input = serach.value;
+    checkInputValue(input)
     loadedPokemon = 0;
-    console.log(input);
     try{
         const searchResponse = await fetch(BASE_URL+input);
         if(searchResponse.ok){
+            showLoadingSpinner();
             contentRef.innerHTML="";
             let data = await searchResponse.json();
             counter = data.id;
             loadedPokemonTotal = data.id;     
-            rowData=[];
-            PokemonData=[];
-            PokemonAbilitys=[];
-            PokemonStats=[];
-            PokemonTypes=[];
-            PokemonObjects=[];
+            clearStorage();
             fetchBaseAPI();
             setTimeout(markingChoosenPokemon,2000);
             
@@ -224,7 +221,22 @@ async function findPokemon() {
         console.error(error);
     }  
 }
+function checkInputValue(input){
+    const isNumber = Number(input);
+    if(input.length < 3 && !isNumber){
+        alert('Mindestens 3 Zeichen oder eine nummerische ID !');
+        return; // löst funktions abbruch aus 
+    }
+}
 
+function clearStorage(){
+    rowData=[];
+    PokemonData=[];
+    PokemonAbilitys=[];
+    PokemonStats=[];
+    PokemonTypes=[];
+    PokemonObjects=[];
+}
 function markingChoosenPokemon(){
     let marker = document.getElementById('card'+counter);
     console.log(counter);
@@ -232,27 +244,23 @@ function markingChoosenPokemon(){
     if(marker){
         marker.classList.add('choosen-pokemon');
         marker.classList.add('neon-pulse');
-         
+        marker.scrollIntoView();
     }
-   
 }
 
 function loadMorePokemon(){
-   
+    showLoadingSpinner();
+    removeMarkingChoosenPokemon();
     let newStartIndex = counter +1 ;
     counter +=20;
     let newEndIndex = counter
     loadedPokemonTotal = 20;
-    
-    
     loadedPokemon = 0
-    console.log('StartIndex',newStartIndex,
-        'EndIndex' ,newEndIndex,
-        'Gibt an wie viele neue Pokemon geladen werden', loadedPokemonTotal,
-        'Gibt an wie viele Pokemon geladen sind', loadedPokemon
-    ); 
-     
-   
+    //console.log('StartIndex',newStartIndex,
+    //    'EndIndex' ,newEndIndex,
+    //    'Gibt an wie viele neue Pokemon geladen werden', loadedPokemonTotal,
+    //    'Gibt an wie viele Pokemon geladen sind', loadedPokemon
+    //); 
     fetchBaseAPI(newStartIndex, newEndIndex);
 
 }

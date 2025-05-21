@@ -67,9 +67,9 @@ function htmlOverlayBody(i){
               
               </div>
           </div>
-          <div class="switchBtn">
-              <button id="switchBtnLeft" onclick="switchBtnLeft(${i})"><</button>
-              <button id="switchBtnRight" onclick="switchBtnRight(${i})">></button>
+          <div class="switchBtnContainer">
+              <button class="switchBtn" id="switchBtnLeft" onclick="switchBtnLeft(${i})"><</button>
+              <button class="switchBtn" id="switchBtnRight" onclick="switchBtnRight(${i})">></button>
           </div>
 
       </div>
@@ -135,6 +135,15 @@ function htmlLoadButton(){
         
         <button class="loadBtn" onclick="loadMorePokemon()">load more Pokemon</button>
         
+
+  `
+}
+
+function renderLoadingSpinner(){
+  return`
+        <div class="loader-flex">
+            <span class="loader"></span>
+        </div>
 
   `
 }

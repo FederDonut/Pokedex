@@ -20,10 +20,13 @@
 <body onload="init()">
     <header>
         <h1>Pokedex</h1>
-        <form class="d-flex" role="search">
-            <input class="form-control me-2" id="search" type="search" placeholder="Search Name or Id >>> Mew / 152" aria-label="Search"/>
-            <button class="btn btn-outline-success" onclick="findPokemon()" type="button">Search</button>
-        </form>
+        <div class="search-flex">
+            <form class="d-flex" role="search">
+                <input class="form-control me-2" id="search" type="search" placeholder="Name or Id / Mew or 152" aria-label="Search"/>
+                <button class="btn btn-outline-success" onclick="findPokemon()" type="button">Search</button>
+            </form>
+        </div>
+        
     </header>
     <div class="overlay d_none" id="overlay" onclick="toggleOverlay(i)"></div>
     <div class="overlay2 d_none" id="overlay2"></div>
@@ -32,5 +35,4 @@
     <footer></footer>
 </body>
 </html>
-
 
