@@ -59,7 +59,8 @@ function htmlOverlayBody(i){
           <div class="img-Container" id="overlay-img-container">
               <img src="" class="overlay-img card-Img" id="overlay-img">
           </div>
-          <div class="overlay-pokemon-stats">
+          <div class="responsiv-pokemon-stats" id="responsiv-stats"></div>
+          <div class="overlay-pokemon-stats" id="stats-summary">
               <div class="overlay-stats" id="overlay-stats-1">
               
               </div>
@@ -80,12 +81,12 @@ function htmlOverlayBody(i){
 
 function htmlOverlayPokemonStats(i){
   return`  
-        <h3>height: ${PokemonObjects[i].height/10} m</h3>
-        <h3>weight: ${PokemonObjects[i].weight/10} kg</h3>
-        <h3>Typ: ${PokemonObjects[i].typ1}</h3>
-        <h3 id="overlay-typ${PokemonObjects[i].id}">Typ: ${PokemonObjects[i].typ2}</h3>
-        <h3>attack: ${PokemonObjects[i].ability1}</h3>
-        <h3>attack: ${PokemonObjects[i].ability2}</h3>
+        <h3 class="height-space">height: ${PokemonObjects[i].height/10} m</h3>
+        <h3 class="height-space">weight: ${PokemonObjects[i].weight/10} kg</h3>
+        <h3 class="height-space">Typ: ${PokemonObjects[i].typ1}</h3>
+        <h3 class="height-space" id="overlay-typ${PokemonObjects[i].id}">Typ: ${PokemonObjects[i].typ2}</h3>
+        <h3 class="height-space">attack: ${PokemonObjects[i].ability1}</h3>
+        <h3 class="height-space">attack: ${PokemonObjects[i].ability2}</h3>
   `
 }
 
@@ -139,10 +140,23 @@ function htmlLoadButton(){
   `
 }
 
-function renderLoadingSpinner(){
+function htmlLoadingSpinner(){
   return`
         <div class="loader-flex">
             <span class="loader"></span>
+        </div>
+
+  `
+}
+
+//-------------------------Responsiv Template--------------------------
+
+function htmlResponsivOverlay(i){
+  return`
+        <div class="responsiv-body-flex">
+          <div class="responsiv-normal-stats" id="responsiv-normal-stats"></div>
+          <button class="switchWStatsBtn" onlick="">Normal Stats</button>
+          <button class="switchStatsBtn" onclick="">Combat Stats</button>
         </div>
 
   `

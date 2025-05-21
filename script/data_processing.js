@@ -44,7 +44,7 @@ function dataProcessing(startIndexProcessing = 0){//Datenverarbeitung
             
         });
     }
-    console.table(PokemonData);
+    //console.table(PokemonData);
  
 }
 

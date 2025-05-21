@@ -13,7 +13,9 @@ let loadedPokemon = 0;
 function init(){
     fetchBaseAPI();
     renderMoreContent()
-    showLoadingSpinner();
+    showLoadingSpinner()
+    //callResponsivOverlay();
+    
 }
 
 async function fetchBaseAPI(startIndex = 1, endIndex = counter){
@@ -99,7 +101,7 @@ function renderPokemonImg(imgResponse ,id){// Lädt die Bilder
     spriete.src = imgResponse.url
     spriete.onload= function(){ // Bild ist vollständig geladen onload()
         loadedPokemon ++
-        console.log(`Bild für Pokemon ${id} geladen (${loadedPokemon}/${loadedPokemonTotal})`);
+        //console.log(`Bild für Pokemon ${id} geladen (${loadedPokemon}/${loadedPokemonTotal})`);
         if(loadedPokemon === loadedPokemonTotal){
             hiedLoadingSpinner();
         }
@@ -134,6 +136,7 @@ function checkTypes(id){
 }
 
 function toggleOverlay(i){
+    
     let overlayRef = document.getElementById('overlay');
     overlayRef.classList.toggle('d_none');
     if(overlayRef.classList.contains('d_none')){
@@ -149,6 +152,7 @@ function toggleOverlay(i){
         fetchOverlayPokemonImg(i);
         renderPokemonOverlayStats(i);
         calculatePokemonStats(i);
+        currentWindowWidth(i);
         
     }
 }
@@ -166,6 +170,8 @@ function switchBtnLeft(i){
         fetchOverlayPokemonImg(i-1);
         renderPokemonOverlayStats(i-1);
         calculatePokemonStats(i-1);
+        currentWindowWidth(i)
+
     }else{
         i=counter-1;
         BtnLeft.innerHTML= renderOverlay();
@@ -174,6 +180,7 @@ function switchBtnLeft(i){
         fetchOverlayPokemonImg(i);
         renderPokemonOverlayStats(i);
         calculatePokemonStats(i);
+        currentWindowWidth(i)
     }
 }
 
@@ -186,6 +193,7 @@ function switchBtnRight(i){
         fetchOverlayPokemonImg(i+1);
         renderPokemonOverlayStats(i+1);
         calculatePokemonStats(i+1);
+        currentWindowWidth(i)
     }else{
         i=0;
         BtnRight.innerHTML = renderOverlay();
@@ -194,6 +202,7 @@ function switchBtnRight(i){
         fetchOverlayPokemonImg(i);
         renderPokemonOverlayStats(i);
         calculatePokemonStats(i);
+        currentWindowWidth()
     }
         
 }
@@ -214,8 +223,7 @@ async function findPokemon() {
             loadedPokemonTotal = data.id;     
             clearStorage();
             fetchBaseAPI();
-            setTimeout(markingChoosenPokemon,2000);
-            
+            setTimeout(markingChoosenPokemon,2000);   
         }
     }catch(error){
         console.error(error);
@@ -262,6 +270,8 @@ function loadMorePokemon(){
     //    'Gibt an wie viele Pokemon geladen sind', loadedPokemon
     //); 
     fetchBaseAPI(newStartIndex, newEndIndex);
-
 }
+// Notwendig für responsiv Design 
+
+
 

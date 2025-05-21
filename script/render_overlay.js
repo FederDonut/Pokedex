@@ -40,7 +40,7 @@ function renderPokemonOverlaySpecificStats(i,hp,atk,def,s_atk,s_def,speed ){// m
 function showLoadingSpinner(){
     //console.log('Ladebildschirmm aktiv ')
     let loadinsgspinner = document.getElementById('overlay2');
-    loadinsgspinner.innerHTML = renderLoadingSpinner();
+    loadinsgspinner.innerHTML = htmlLoadingSpinner();
     loadinsgspinner.classList.remove('d_none');
 
 }
@@ -49,3 +49,5 @@ function hiedLoadingSpinner(){
     let loadinsgspinner = document.getElementById('overlay2');
     loadinsgspinner.classList.add('d_none');
 }
+
+

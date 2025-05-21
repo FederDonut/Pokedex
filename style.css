@@ -8,6 +8,8 @@ body{
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+    width: 100%;
+    max-width: 1920px;/*Content Begrenzung ???*/
     background-color: #1d2533;
     
 }
@@ -19,6 +21,7 @@ header{
     width: 100%;
     top: 0;
     background-color: #576c6a;
+    color: white;
   
 }
 .search-flex{
@@ -149,6 +152,10 @@ header{
     height: 58px;
    
 }
+.height-space{
+    height: 54px;
+    margin-bottom: 0;
+}
 
 .more-content{
     width: 100%;
@@ -173,4 +180,14 @@ header{
 footer{
     width: 100%;
     height: 100px;
+}
+
+@media(max-width: 1920px){
+
+}
+
+@media(max-width: 530px){
+    .overlay-content-render{
+        width: 90%;
+    }
 }
