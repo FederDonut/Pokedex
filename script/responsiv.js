@@ -69,8 +69,9 @@ function backToNormalOverlay(){
 function showCombatStats(){
     console.log('combat');
     console.log(responsivIndex)
-    let statsLoader = document.getElementById('stats-loader');
-    statsLoader.innerHTML="";
+    let statsLoader = document.getElementById('stats-loader-combat');
+    let statsLoadernormal = document.getElementById('stats-loader-normal');
+    statsLoadernormal.innerHTML="";
     copySpecificStats();
     //calculatePokemonStats(responsivIndex);
     //;
@@ -79,14 +80,15 @@ function showCombatStats(){
 function showNormalStats(){
     //console.log(responsivIndex)
     //console.log('normal');
-    let statsLoader = document.getElementById('stats-loader');
-    statsLoader.innerHTML="";
+    let statsLoaderCombat = document.getElementById('stats-loader-combat');
+    let statsLoader = document.getElementById('stats-loader-normal');
+    statsLoaderCombat.innerHTML="";
     statsLoader.innerHTML = htmlOverlayPokemonStats(responsivIndex);
 }
 
 function copySpecificStats(){
     let sourceDiv = document.getElementById('overlay-stats-2');
-    let targetDiv = document.getElementById('stats-loader');
+    let targetDiv = document.getElementById('stats-loader-combat');
     if(sourceDiv && targetDiv){
         const copyContent = sourceDiv.innerHTML;
         targetDiv.innerHTML = copyContent;

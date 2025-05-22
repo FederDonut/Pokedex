@@ -80,20 +80,38 @@ function htmlOverlayBody(i){
 }
 
 function htmlOverlayPokemonStats(i){
-  return`  
-        <h3 class="height-space">height: ${PokemonObjects[i].height/10} m</h3>
-        <h3 class="height-space">weight: ${PokemonObjects[i].weight/10} kg</h3>
-        <h3 class="height-space">Typ: ${PokemonObjects[i].typ1}</h3>
-        <h3 class="height-space" id="overlay-typ${PokemonObjects[i].id}">Typ: ${PokemonObjects[i].typ2}</h3>
-        <h3 class="height-space">attack: ${PokemonObjects[i].ability1}</h3>
-        <h3 class="height-space">attack: ${PokemonObjects[i].ability2}</h3>
+  return`
+        <div class="flex-content">
+            <span><h3 class="height-space-name">height: </h3></span>
+            <span><h3 class="height-space-value">${PokemonObjects[i].height/10} m</h3></span>
+        </div>
+        <div class="flex-content">
+            <h3 class="height-space-name">weight: </h3>
+            <h3 class="height-space-value">${PokemonObjects[i].weight/10} kg</h3>
+        </div>
+        <div class="flex-content">
+            <h3 class="height-space-name">Typ: </h3>
+            <h3 class="height-space-value"> ${PokemonObjects[i].typ1}</h3>
+        </div>
+        <div class="flex-content">
+            <h3 class="height-space-name">Typ: </h3>
+            <h3 class="height-space-value" id="overlay-typ${PokemonObjects[i].id}"> ${PokemonObjects[i].typ2}</h3>
+        </div>
+        <div class="flex-content">
+            <h3 class="height-space-name">attack: </h3>
+            <h3 class="height-space-value"> ${PokemonObjects[i].ability1}</h3>
+        </div>
+        <div class="flex-content">
+            <h3 class="height-space-name">attack: </h3>
+            <h3 class="height-space-value"> ${PokemonObjects[i].ability2}</h3>
+        </div>
   `
 }
 
 function htmlOverlayPokemonSpecificStats(i,hp,atk,def,s_atk,s_def,speed){
   return`
         <div class="specific-stats">
-            <h3>HP: ${PokemonObjects[i].hp}</h3>
+            <div class="specific-stats-name"><h3>HP: ${PokemonObjects[i].hp}</h3></div>
             <div class="progress" role="progressbar" aria-label="Success example" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
               <div class="progress-bar text-bg-success" style="width: ${hp}%"></div>
             </div>
@@ -151,14 +169,17 @@ function htmlLoadingSpinner(){
 
 //-------------------------Responsiv Template--------------------------
 
-function htmlResponsivOverlay(i){
+function htmlResponsivOverlay(responsivIndex){
   return`
         <div class="responsiv-body-flex">
           <div class="responsiv-normal-stats" id="responsiv-normal-stats">
-            <button class="loadBtn" id="normalStats" onclick="showNormalStats(${i})">Normal Stats</button>
-            <button class="loadBtn" id="combatStats" onclick="showCombatStats(${i})">Combat Stats</button>
+            <button class="loadBtn" id="normalStats" onclick="showNormalStats(${responsivIndex})">Normal Stats</button>
+            <button class="loadBtn" id="combatStats" onclick="showCombatStats(${responsivIndex})">Combat Stats</button>
           </div>
-          <div class="responsiv-stats-container" id="stats-loader"></div>
+          <div class="responsiv-stats-container" id="responsiv-stats-flex" >
+            <div class="responsiv-flex-container-normal" id="stats-loader-normal"></div>
+            <div class="responsiv-flex-container-combat" id="stats-loader-combat"></div>
+          </div>
         </div>
 
   `
