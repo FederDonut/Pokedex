@@ -30,12 +30,12 @@ function renderPokemonOverlayStats(i){
 }
 
 function renderPokemonOverlaySpecificStats(i,hp,atk,def,s_atk,s_def,speed ){// muss getestet werden 
+    //let control = document.getElementById('stats-summary');
+    //let responsivStats = document.getElementById('responsiv-stats'); 
     let stats = document.getElementById('overlay-stats-2');
-    stats.innerHTML = htmlOverlayPokemonSpecificStats(i,hp,atk,def,s_atk,s_def,speed);
-    
+ 
+    stats.innerHTML = htmlOverlayPokemonSpecificStats(i,hp,atk,def,s_atk,s_def,speed)
 }
-
-
 //-------------------------------LoadingScreen---------------------
 function showLoadingSpinner(){
     //console.log('Ladebildschirmm aktiv ')

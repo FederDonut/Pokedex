@@ -11,6 +11,7 @@ let loadedPokemon = 0;
 
 
 function init(){
+    maxOverlayLimit.addEventListener('change', callResponsivOverlay); //test
     fetchBaseAPI();
     renderMoreContent()
     showLoadingSpinner()
@@ -153,6 +154,7 @@ function toggleOverlay(i){
         fetchOverlayPokemonImg(i);
         renderPokemonOverlayStats(i);
         calculatePokemonStats(i);
+        extractPokemonId(i); // Zur index Bestimmung
         currentWindowWidth(i);
         callResponsivOverlay(i);
         
@@ -172,7 +174,10 @@ function switchBtnLeft(i){
         fetchOverlayPokemonImg(i-1);
         renderPokemonOverlayStats(i-1);
         calculatePokemonStats(i-1);
-        currentWindowWidth(i)
+        //extractPokemonId(i); // Zur index Bestimmung
+        responsivIndex -=1;
+        currentWindowWidth()
+        //renderResponsivOverlay(responsivIndex-1)
 
     }else{
         i=counter-1;
@@ -182,7 +187,8 @@ function switchBtnLeft(i){
         fetchOverlayPokemonImg(i);
         renderPokemonOverlayStats(i);
         calculatePokemonStats(i);
-        currentWindowWidth(i)
+        extractPokemonId(i); // Zur index Bestimmung
+        currentWindowWidth()
     }
 }
 
@@ -195,7 +201,8 @@ function switchBtnRight(i){
         fetchOverlayPokemonImg(i+1);
         renderPokemonOverlayStats(i+1);
         calculatePokemonStats(i+1);
-        currentWindowWidth(i)
+        responsivIndex +=1;
+        currentWindowWidth()
     }else{
         i=0;
         BtnRight.innerHTML = renderOverlay();
@@ -204,6 +211,7 @@ function switchBtnRight(i){
         fetchOverlayPokemonImg(i);
         renderPokemonOverlayStats(i);
         calculatePokemonStats(i);
+        extractPokemonId(i)
         currentWindowWidth()
     }
         
@@ -249,7 +257,7 @@ function clearStorage(){
 }
 function markingChoosenPokemon(){
     let marker = document.getElementById('card'+counter);
-    console.log(counter);
+    //console.log(counter);
     //console.log(marker)
     if(marker){
         marker.classList.add('choosen-pokemon');

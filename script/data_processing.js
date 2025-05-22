@@ -142,6 +142,7 @@ function calculatePokemonStats(i){
     let s_atk = Math.ceil((PokemonObjects[i].s_atk*100) /PokemonMaxStatsValue[0].s_atk)
     let s_def = Math.ceil((PokemonObjects[i].s_def*100) /PokemonMaxStatsValue[0].s_def)
     let speed = Math.ceil((PokemonObjects[i].speed*100) /PokemonMaxStatsValue[0].speed)
-    renderPokemonOverlaySpecificStats(i, hp,atk,def,s_atk,s_def,speed);
-      
+    renderPokemonOverlaySpecificStats(i,hp,atk,def,s_atk,s_def,speed);
+    return(i,hp,atk,def,s_atk,s_def,speed)//test
+    //showCombatStats(i,hp,atk,def,s_atk,s_def,speed) 
 }
