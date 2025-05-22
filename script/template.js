@@ -52,7 +52,7 @@ function htmlOverlayBody(i){
   return `
       <div class="overlay-body-flex">
           <div class="content-header">
-              <h2>#${PokemonObjects[i].id}</h2>
+              <h2 id="groundingPoint">#${PokemonObjects[i].id}</h2>
               <h2>${PokemonData[i].name}</h2>
               <button class="exitBtn" onclick="toggleOverlay(${i})">X</button>
           </div>
@@ -154,9 +154,11 @@ function htmlLoadingSpinner(){
 function htmlResponsivOverlay(i){
   return`
         <div class="responsiv-body-flex">
-          <div class="responsiv-normal-stats" id="responsiv-normal-stats"></div>
-          <button class="switchWStatsBtn" onlick="">Normal Stats</button>
-          <button class="switchStatsBtn" onclick="">Combat Stats</button>
+          <div class="responsiv-normal-stats" id="responsiv-normal-stats">
+            <button class="loadBtn" id="normalStats" onclick="showNormalStats(${i})">Normal Stats</button>
+            <button class="loadBtn" id="combatStats" onclick="showCombatStats(${i})">Combat Stats</button>
+          </div>
+          <div class="responsiv-stats-container" id="stats-loader"></div>
         </div>
 
   `

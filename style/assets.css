@@ -199,10 +199,12 @@
 
 .loadBtn:hover::after {
   width: 100%;
+  
 }
 
 .loadBtn:hover {
   color: white;
+  z-index: 1;/*necessary for the overlay*/
 }
 
 

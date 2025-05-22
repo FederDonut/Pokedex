@@ -31,8 +31,8 @@ function renderPokemonOverlayStats(i){
 
 function renderPokemonOverlaySpecificStats(i,hp,atk,def,s_atk,s_def,speed ){// muss getestet werden 
     let stats = document.getElementById('overlay-stats-2');
-    stats.innerHTML += htmlOverlayPokemonSpecificStats(i,hp,atk,def,s_atk,s_def,speed);
-   
+    stats.innerHTML = htmlOverlayPokemonSpecificStats(i,hp,atk,def,s_atk,s_def,speed);
+    
 }
 
 
@@ -42,7 +42,6 @@ function showLoadingSpinner(){
     let loadinsgspinner = document.getElementById('overlay2');
     loadinsgspinner.innerHTML = htmlLoadingSpinner();
     loadinsgspinner.classList.remove('d_none');
-
 }
 function hiedLoadingSpinner(){
     //console.log('Ladebildschirmm entfernt')

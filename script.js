@@ -144,6 +144,7 @@ function toggleOverlay(i){
         overlayRef.innerHTML="";
 
     }else{
+        
         //console.log(false,'d_none ist inaktiv overlay sichtbar')
         removeMarkingChoosenPokemon();
         overlayRef.innerHTML = renderOverlay();
@@ -153,6 +154,7 @@ function toggleOverlay(i){
         renderPokemonOverlayStats(i);
         calculatePokemonStats(i);
         currentWindowWidth(i);
+        callResponsivOverlay(i);
         
     }
 }
