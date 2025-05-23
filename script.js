@@ -1,24 +1,18 @@
-// Ausschließlich Pokemon der ersten Generation werden abgefragt 
-//let PokeNames =[];
-//const BASE_URL ="https://pokeapi.co/api/v2/pokemon?limit=12&offset=0"
-
 
 const BASE_URL = "https://pokeapi.co/api/v2/pokemon/"
-let counter = 25;// Gibt an wie viele Pokemon im Pokedex geladen werden 
+let counter = 25; 
 let loadedPokemonTotal = counter;
 let loadedPokemon = 0;
 
-
-
 function init(){
-    maxOverlayLimit.addEventListener('change', callResponsivOverlay); //test
+    maxOverlayLimit.addEventListener('change', callResponsivOverlay);
     fetchBaseAPI();
     renderMoreContent()
     showLoadingSpinner()
 }
 
 async function fetchBaseAPI(startIndex = 1, endIndex = counter){
-    const startIndexOfNewData = rowData.length // Notwendig für die LodingFunktion 
+    const startIndexOfNewData = rowData.length 
     for(index = startIndex; index <= endIndex; index++ ){
         try {
             const response = await fetch(BASE_URL+index);
@@ -79,6 +73,7 @@ function backgroundColor(id){
     let card = document.getElementById('card'+id);
     card.classList.add(type.innerText);
 };
+
 function checkTypes(id){
     let secondType = document.getElementById('second-type'+id);
     let header = document.getElementById('second-type-header'+id);
@@ -87,6 +82,7 @@ function checkTypes(id){
         header.innerHTML=""
     }
 }
+
 function checkTypesOnOverlay(i){
     let divContainer = document.getElementById('flex-content-typ2');
     let secondTypeValue = document.getElementById('overlay-typ'+PokemonObjects[i].id);
@@ -96,28 +92,26 @@ function checkTypesOnOverlay(i){
 }
 
 function toggleOverlay(i){
-    
     let overlayRef = document.getElementById('overlay');
     overlayRef.classList.toggle('d_none');
     if(overlayRef.classList.contains('d_none')){
         overlayRef.innerHTML="";
         scrollPrevention();
-
     }else{
         removeMarkingChoosenPokemon();
         overlayRef.innerHTML = renderOverlay();
         callOverlay(i); 
     }
 }
+
 function callOverlay(i){
-    
     renderOverlayTypeColor(i);
     renderPokemonOnOverlayContent(i);
     fetchOverlayPokemonImg(i);
     renderPokemonOverlayStats(i);
     calculatePokemonStats(i);
     checkTypesOnOverlay(i);
-    extractPokemonId(i); // Zur index Bestimmung
+    extractPokemonId(i); 
     currentWindowWidth(i);
     callResponsivOverlay(i);
     scrollPrevention(); 
@@ -126,6 +120,7 @@ function callOverlay(i){
 function preventBubbling (event){
     event.stopPropagation();   
 }
+
 function scrollPrevention(){
     let body =document.body;
     let controler = document.getElementById('overlay');
@@ -169,7 +164,7 @@ function callSwitchBtn(i){
         renderPokemonOverlayStats(i);
         calculatePokemonStats(i);
         checkTypesOnOverlay(i);
-        extractPokemonId(i); // Zur index Bestimmung
+        extractPokemonId(i); 
         currentWindowWidth()
 }
 
@@ -232,7 +227,7 @@ function loadMorePokemon(){
     loadedPokemon = 0
     fetchBaseAPI(newStartIndex, newEndIndex);
 }
-// Notwendig für responsiv Design 
+
 
 
 

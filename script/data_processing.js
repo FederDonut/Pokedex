@@ -1,15 +1,11 @@
 
 let rowData = [];
-
-let PokemonData =[];// Name + BasisURL
+let PokemonData =[];
 let PokemonAbilitys =[];
 let PokemonStats = [];
-
 let PokemonTypes = [];
+let PokemonObjects =[]; 
 
-let PokemonObjects =[]; // Finaler Datensatz
-
-//Quelle ChatGpt
 let PokemonMaxStatsValue = [
     {
         hp: 255,
@@ -19,13 +15,9 @@ let PokemonMaxStatsValue = [
         s_def: 230,
         speed: 200
     }
-]// maximal Werte für Progressbar
+]
 
-
-
-
-
-function dataProcessing(startIndexProcessing = 0){//Datenverarbeitung
+function dataProcessing(startIndexProcessing = 0){
     for(index = startIndexProcessing; index < rowData.length; index++){
         PokemonData.push({
             name: rowData[index].name,
@@ -41,7 +33,7 @@ function dataProcessing(startIndexProcessing = 0){//Datenverarbeitung
     }
 }
 
-function processingPokemonTypes(startIndexProcessing = 0){ // Datenverarbeitung
+function processingPokemonTypes(startIndexProcessing = 0){ 
     for(i =startIndexProcessing; i< PokemonData.length;i++){
         const pokemonId = PokemonData[i].id;
         const typesArray = Object.values(PokemonData[i].types).map(typeInfo => typeInfo.type.name)        
@@ -52,6 +44,7 @@ function processingPokemonTypes(startIndexProcessing = 0){ // Datenverarbeitung
         })
     } 
 }
+
 function processingPokemonAbilitys(startIndexProcessing = 0){
     for(i = startIndexProcessing; i< PokemonData.length;i++){
         const pokemonId = PokemonData[i].id;

@@ -8,10 +8,9 @@ body{
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    width: 100%;
-    max-width: 1920px;/*Content Begrenzung ???*/
+    width: 100%;   
     background-color: #1d2533;
-    
+    align-items: center;
 }
 header{
     padding-left: 20px;
@@ -24,11 +23,21 @@ header{
     color: white;
   
 }
+.header-content{
+    width: 100%;
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
 .search-flex{
     display: flex;
     justify-content: flex-end;
 }
 .content{
+    width: 100%;
+    max-width: 1920px;
     padding-top: 25px;
     padding-bottom: 25px;
     display: flex;
@@ -142,15 +151,11 @@ header{
     justify-content: center;
     padding-left: 20px;
     height: 100%;
-    width: 48%;
-    
-    
-    
+    width: 48%;   
 }
 .specific-stats{
     width: 80%;
-    height: 58px;
-   
+    height: 58px;  
 }
 .height-space{
     height: 54px;
@@ -165,17 +170,6 @@ header{
     align-items: center;
     margin-top: 20px;
 }
-/*.loadBtn{
-    padding: 0;
-    
-    border: 0;
-    height: 100%;
-    width: 180px;
-    border-radius: 10px;
-    font-weight: 500;
-
-
-}*/
 .responsiv-normal-stats{
     display: flex;
     flex-direction: row;
@@ -209,6 +203,9 @@ footer{
 
 @media(max-width: 580px){
     
+    .card{
+        width: 290px;
+    }
    
     .exitBtn{
         height: 30px;

@@ -1,4 +1,3 @@
-//Content-Begrenzung für große Monitore (max-width z.B. bei 1920px oder 1440px)
 const contentLimit = window.matchMedia('(max-width: 1920px)'); 
 const maxOverlayLimit = window.matchMedia('(max-width: 580px)');
 const backToNormal = window.matchMedia('(max-width: 578px)');
@@ -9,10 +8,6 @@ function extractPokemonId(i){
     responsivIndex = i;
 }
 
-// durch den eventlistenr wird "i" global deklariert werden
-
-
-//Initale Abfrage
 function currentWindowWidth(){
     let overlayRef = document.getElementById('overlay');
     if(window.innerWidth <= 575 && !overlayRef.classList.contains('d_none')){
@@ -21,7 +16,6 @@ function currentWindowWidth(){
     }
 }
 
-//Dynamische Änderung
 function callResponsivOverlay(){
     let overlayRef = document.getElementById('overlay');
     if(overlayRef && !overlayRef.classList.contains('d_none')){
@@ -65,6 +59,7 @@ function showCombatStats(){
     copySpecificStats();
     
 }
+
 function showNormalStats(){
     let statsLoaderCombat = document.getElementById('stats-loader-combat');
     statsLoaderCombat.innerHTML="";
@@ -78,7 +73,7 @@ function copySpecificStats(){
         const copyContent = sourceDiv.innerHTML;
         targetDiv.innerHTML = copyContent;
     }else{
-        console.log('Einer oder Beide Div Container konnten nicht gefunden werden')
+        console.error('Einer oder Beide Div Container konnten nicht gefunden werden')
     }
 }
 
@@ -89,6 +84,6 @@ function copyNormalStats(){
         const copyNormalContent = sourceDiv.innerHTML;
         targetDiv.innerHTML = copyNormalContent;
     }else{
-        console.log('Einer oder Beide Div Container konnten nicht gefunden werden')
+        console.error('Einer oder Beide Div Container konnten nicht gefunden werden')
     }
 }

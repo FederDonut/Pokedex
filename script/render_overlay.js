@@ -1,6 +1,3 @@
-// !!! id-1 da index bei 0 und nicht bei 1 beginnt !!!
-
-
 function renderPokemonObject(startIndex = 0){
     let contentRef = document.getElementById('content');
     for(i = startIndex; i< PokemonObjects.length; i++){
@@ -15,6 +12,7 @@ function renderPokemonObject(startIndex = 0){
         checkTypes(id);      
     }  
 };
+
 function renderPokemonOnOverlayContent(i){
     let content = document.getElementById('overlay-body');
     content.innerHTML += htmlOverlayBody(i);
@@ -26,28 +24,26 @@ function renderOverlayTypeColor(i){
     card.classList.toggle(pokeTyp);
 }
 
-function renderOverlayPokemonImg(overlayResponse){// Lädt die Bilder 
-    let spriete = document.getElementById('overlay-img');// wichtig kein , sondern +
+function renderOverlayPokemonImg(overlayResponse){
+    let spriete = document.getElementById('overlay-img');
     spriete.innerHTML="";
     spriete.src = overlayResponse.url 
-    
 };
-
 
 function renderPokemonOverlayStats(i){
     let stats = document.getElementById('overlay-stats-1');
     stats.innerHTML = htmlOverlayPokemonStats(i);
-     
 }
 
 function renderPokemonOverlaySpecificStats(i,hp,atk,def,s_atk,s_def,speed ){ 
     let stats = document.getElementById('overlay-stats-2');
     stats.innerHTML = htmlOverlayPokemonSpecificStats(i,hp,atk,def,s_atk,s_def,speed)
 }
-function renderPokemonImg(imgResponse ,id){// Lädt die Bilder 
-    let spriete = document.getElementById('Pokemon-Img'+id);// wichtig kein , sondern +
+
+function renderPokemonImg(imgResponse ,id){
+    let spriete = document.getElementById('Pokemon-Img'+id);
     spriete.src = imgResponse.url
-    spriete.onload= function(){ // Bild ist vollständig geladen onload()
+    spriete.onload= function(){
         loadedPokemon ++
         if(loadedPokemon === loadedPokemonTotal){
             hiedLoadingSpinner();
@@ -59,19 +55,21 @@ function renderPokemonImg(imgResponse ,id){// Lädt die Bilder
         if(loadedPokemon === loadedPokemonTotal){
             hiedLoadingSpinner();
         }
-    }; 
-    
+    };   
 };
+
 function renderMoreContent(){
     let loadBtn = document.getElementById('more-content');
     loadBtn.innerHTML =  htmlLoadButton();
 }
+
 //-------------------------------LoadingScreen---------------------
 function showLoadingSpinner(){
     let loadinsgspinner = document.getElementById('loading-spinner');
     loadinsgspinner.innerHTML = htmlLoadingSpinner();
     loadinsgspinner.classList.remove('d_none');
 }
+
 function hiedLoadingSpinner(){
     let loadinsgspinner = document.getElementById('loading-spinner');
     loadinsgspinner.classList.add('d_none');

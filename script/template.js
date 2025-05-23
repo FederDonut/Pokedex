@@ -34,7 +34,7 @@ function htmlLayout(id,name,typ1,typ2,height,weight,i){
     `
 }
 
-function renderOverlay(){ // Grobstrucktur
+function renderOverlay(){
   return `
       <div class="overlay-content-flex">
           <div class="overlay-content-render" id="overlay-card" onclick="preventBubbling(event)">
