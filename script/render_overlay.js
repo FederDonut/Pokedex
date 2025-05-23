@@ -1,4 +1,3 @@
-// Neuer Template Ansatz wird hier verfolgt bzw. angewendet
 // !!! id-1 da index bei 0 und nicht bei 1 beginnt !!!
 
 
@@ -28,7 +27,6 @@ function renderOverlayTypeColor(i){
 }
 
 function renderOverlayPokemonImg(overlayResponse){// Lädt die Bilder 
-    //console.log(imgResponse);
     let spriete = document.getElementById('overlay-img');// wichtig kein , sondern +
     spriete.innerHTML="";
     spriete.src = overlayResponse.url 
@@ -70,12 +68,12 @@ function renderMoreContent(){
 }
 //-------------------------------LoadingScreen---------------------
 function showLoadingSpinner(){
-    let loadinsgspinner = document.getElementById('overlay2');
+    let loadinsgspinner = document.getElementById('loading-spinner');
     loadinsgspinner.innerHTML = htmlLoadingSpinner();
     loadinsgspinner.classList.remove('d_none');
 }
 function hiedLoadingSpinner(){
-    let loadinsgspinner = document.getElementById('overlay2');
+    let loadinsgspinner = document.getElementById('loading-spinner');
     loadinsgspinner.classList.add('d_none');
 }
 

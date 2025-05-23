@@ -96,7 +96,7 @@
     }
 }
 /*LoadingSpinner */
-.overlay2{
+.loading-spinner{
   position: fixed;
   top: 0;
   left: 0;
@@ -106,7 +106,7 @@
   background-color: #222B32 
   
 }
-.overlay2::-webkit-scrollbar{
+.loading-spinner::-webkit-scrollbar{
   display: none;
 }
 .loader-flex{
