@@ -26,12 +26,7 @@ let PokemonMaxStatsValue = [
 
 
 function dataProcessing(startIndexProcessing = 0){//Datenverarbeitung
-    //console.log(rowData);
     for(index = startIndexProcessing; index < rowData.length; index++){
-        //console.log(rowData[index].abiities);
-        //console.log(rowData[index].id);
-        //console.log(rowData[index].sprites.front_default);
-        //console.log(rowData[index].types)
         PokemonData.push({
             name: rowData[index].name,
             id: rowData[index].id,
@@ -44,49 +39,35 @@ function dataProcessing(startIndexProcessing = 0){//Datenverarbeitung
             
         });
     }
-    //console.table(PokemonData);
- 
 }
 
 function processingPokemonTypes(startIndexProcessing = 0){ // Datenverarbeitung
     for(i =startIndexProcessing; i< PokemonData.length;i++){
         const pokemonId = PokemonData[i].id;
-        const typesArray = Object.values(PokemonData[i].types).map(typeInfo => typeInfo.type.name)
-        //console.log(typesArray)        
-            PokemonTypes.push({
-                id: pokemonId,
-                typ1: typesArray[0],
-                typ2: typesArray[1]
-            })
+        const typesArray = Object.values(PokemonData[i].types).map(typeInfo => typeInfo.type.name)        
+        PokemonTypes.push({
+            id: pokemonId,
+            typ1: typesArray[0],
+            typ2: typesArray[1]
+        })
     } 
-    //renderPokemonTypes();         
-    //(console.log(PokemonTypes);
 }
 function processingPokemonAbilitys(startIndexProcessing = 0){
     for(i = startIndexProcessing; i< PokemonData.length;i++){
-        const test = PokemonData[i].ability;
-        //console.log(test);
         const pokemonId = PokemonData[i].id;
-        //console.log(pokemonId);
         const abilityArray = Object.values(PokemonData[i].ability).map(abilityName => abilityName.ability.name)
-        //console.log(abilityArray);
         PokemonAbilitys.push({
             id: pokemonId,
             attack1: abilityArray[0],
             attack2: abilityArray[1]
         })
     }
-    //console.log(PokemonAbilitys);
 }
 
 function processingPokemonStats(startIndexProcessing = 0){
     for(i = startIndexProcessing; i<PokemonData.length; i++){
-        let test = PokemonData[i].stats;
-        //console.log(test);
         const pokemonId = PokemonData[i].id;
         const statsArrayValue = Object.values(PokemonData[i].stats).map(statsValue => statsValue.base_stat)
-        //console.log(statsArrayName);
-        //console.log(statsArrayValue);
         PokemonStats.push({
             id: pokemonId,
             hp: statsArrayValue[0],
@@ -96,11 +77,7 @@ function processingPokemonStats(startIndexProcessing = 0){
             s_def: statsArrayValue[4],
             speed: statsArrayValue[5] 
         })
-        
-        
-
-    }
-    //console.table(PokemonStats);
+    }  
 }
 
 function createPokemonObject(startIndexProcessing = 0){
@@ -114,8 +91,8 @@ function createPokemonObject(startIndexProcessing = 0){
                 typ1: PokemonTypes[i].typ1,
                 typ2: PokemonTypes[i].typ2,
                 img_url: PokemonData[i].img_url,
-                weight: PokemonData[i].weight ,// angabe in kg muss noch angepasst werden
-                height: PokemonData[i].height, //umrechnung in m
+                weight: PokemonData[i].weight ,
+                height: PokemonData[i].height, 
                 ability1: PokemonAbilitys[i].attack1,
                 ability2: PokemonAbilitys[i].attack2,
                 hp: PokemonStats[i].hp,
@@ -128,14 +105,11 @@ function createPokemonObject(startIndexProcessing = 0){
             PokemonObjects.push(pokemon);
         }else{
             console.log("Id`s stimmen nicht überein")
-        }
-        
-    }
-   //console.table(PokemonObjects);       
+        }   
+    }       
 }
 
 function calculatePokemonStats(i){
-    //console.table(PokemonMaxStatsValue);
     let hp = Math.ceil((PokemonObjects[i].hp*100) / PokemonMaxStatsValue[0].hp);
     let atk =Math.ceil((PokemonObjects[i].atk*100) /PokemonMaxStatsValue[0].atk);
     let def = Math.ceil((PokemonObjects[i].def*100) /PokemonMaxStatsValue[0].def)
@@ -143,6 +117,4 @@ function calculatePokemonStats(i){
     let s_def = Math.ceil((PokemonObjects[i].s_def*100) /PokemonMaxStatsValue[0].s_def)
     let speed = Math.ceil((PokemonObjects[i].speed*100) /PokemonMaxStatsValue[0].speed)
     renderPokemonOverlaySpecificStats(i,hp,atk,def,s_atk,s_def,speed);
-    return(i,hp,atk,def,s_atk,s_def,speed)//test
-    //showCombatStats(i,hp,atk,def,s_atk,s_def,speed) 
 }

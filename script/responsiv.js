@@ -9,7 +9,7 @@ function extractPokemonId(i){
     responsivIndex = i;
 }
 
-// durch den eventlistenr muss "i" global deklariert werden
+// durch den eventlistenr wird "i" global deklariert werden
 
 
 //Initale Abfrage
@@ -25,14 +25,10 @@ function currentWindowWidth(){
 function callResponsivOverlay(){
     let overlayRef = document.getElementById('overlay');
     if(overlayRef && !overlayRef.classList.contains('d_none')){
-        //console.log('overlay ist sichtbar')
         if(maxOverlayLimit.matches && !overlayRef.classList.contains('d_none')){
-            //console.log('body with <= 575px --> dynamisch');
-            //console.log('Backto... sollte nun deaktiv sein')
             prepareForResponsivOverlayStats();
             renderResponsivOverlay();    
         }else{
-            //console.log('backtoNormal sollte jetzt greifen ');
             backToNormalOverlay();
         }
     }else{
@@ -44,12 +40,9 @@ function renderResponsivOverlay(){
     
     let stats = document.getElementById('responsiv-stats');
     if(stats.classList.contains('d_none')){
-        //console.log('buttons sollten wieder erscheinen');
         stats.classList.remove('d_none');
     }
-    
     stats.innerHTML = htmlResponsivOverlay(responsivIndex);
-
 }
 
 function prepareForResponsivOverlayStats(){
@@ -66,26 +59,16 @@ function backToNormalOverlay(){
     }
 }
 
-function showCombatStats(){
-    console.log('combat');
-    console.log(responsivIndex)
-    //let statsLoader = document.getElementById('stats-loader-combat');
+function showCombatStats(){    
     let statsLoadernormal = document.getElementById('stats-loader-normal');
     statsLoadernormal.innerHTML="";
     copySpecificStats();
-    //calculatePokemonStats(responsivIndex);
-    //;
     
 }
 function showNormalStats(){
-    console.log(responsivIndex)
-    //checkTypesOnOverlay(responsivIndex);
-    //console.log('normal');
     let statsLoaderCombat = document.getElementById('stats-loader-combat');
-    //let statsLoader = document.getElementById('stats-loader-normal');
     statsLoaderCombat.innerHTML="";
     copyNormalStats();
-    //statsLoader.innerHTML = htmlOverlayPokemonStats(responsivIndex);
 }
 
 function copySpecificStats(){
