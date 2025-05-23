@@ -69,7 +69,7 @@ function backToNormalOverlay(){
 function showCombatStats(){
     console.log('combat');
     console.log(responsivIndex)
-    let statsLoader = document.getElementById('stats-loader-combat');
+    //let statsLoader = document.getElementById('stats-loader-combat');
     let statsLoadernormal = document.getElementById('stats-loader-normal');
     statsLoadernormal.innerHTML="";
     copySpecificStats();
@@ -78,12 +78,14 @@ function showCombatStats(){
     
 }
 function showNormalStats(){
-    //console.log(responsivIndex)
+    console.log(responsivIndex)
+    //checkTypesOnOverlay(responsivIndex);
     //console.log('normal');
     let statsLoaderCombat = document.getElementById('stats-loader-combat');
-    let statsLoader = document.getElementById('stats-loader-normal');
+    //let statsLoader = document.getElementById('stats-loader-normal');
     statsLoaderCombat.innerHTML="";
-    statsLoader.innerHTML = htmlOverlayPokemonStats(responsivIndex);
+    copyNormalStats();
+    //statsLoader.innerHTML = htmlOverlayPokemonStats(responsivIndex);
 }
 
 function copySpecificStats(){
@@ -92,6 +94,17 @@ function copySpecificStats(){
     if(sourceDiv && targetDiv){
         const copyContent = sourceDiv.innerHTML;
         targetDiv.innerHTML = copyContent;
+    }else{
+        console.log('Einer oder Beide Div Container konnten nicht gefunden werden')
+    }
+}
+
+function copyNormalStats(){
+    let sourceDiv = document.getElementById('overlay-stats-1');
+    let targetDiv = document.getElementById('stats-loader-normal');
+    if(sourceDiv && targetDiv){
+        const copyNormalContent = sourceDiv.innerHTML;
+        targetDiv.innerHTML = copyNormalContent;
     }else{
         console.log('Einer oder Beide Div Container konnten nicht gefunden werden')
     }

@@ -54,7 +54,7 @@ function htmlOverlayBody(i){
           <div class="content-header">
               <h2 id="groundingPoint">#${PokemonObjects[i].id}</h2>
               <h2>${PokemonData[i].name}</h2>
-              <button class="exitBtn" onclick="toggleOverlay(${i})">X</button>
+              <button class="exitBtn" id="exitBtn" onclick="toggleOverlay(${i})">X</button>
           </div>
           <div class="img-Container" id="overlay-img-container">
               <img src="" class="overlay-img card-Img" id="overlay-img">
@@ -73,9 +73,7 @@ function htmlOverlayBody(i){
               <button class="switchBtn" id="switchBtnRight" onclick="switchBtnRight(${i})">></button>
           </div>
 
-      </div>
-        
-  
+      </div> 
   `
 }
 
@@ -93,8 +91,8 @@ function htmlOverlayPokemonStats(i){
             <h3 class="height-space-name">Typ: </h3>
             <h3 class="height-space-value"> ${PokemonObjects[i].typ1}</h3>
         </div>
-        <div class="flex-content">
-            <h3 class="height-space-name">Typ: </h3>
+        <div class="flex-content" id="flex-content-typ2">
+            <h3 class="height-space-name" id="overlay-type-header">Typ: </h3>
             <h3 class="height-space-value" id="overlay-typ${PokemonObjects[i].id}"> ${PokemonObjects[i].typ2}</h3>
         </div>
         <div class="flex-content">

@@ -1,6 +1,10 @@
 .d_none{
     display: none !important;
 }
+.scroll_prevention{
+  overflow: hidden !important;
+}
+
 
 /*Karten Layout*/
 .card{
