@@ -13,6 +13,11 @@ function renderPokemonObject(startIndex = 0){
     }  
 };
 
+function renderFoundedPokemon(){
+    let foundedContent = document.getElementById('founded-content');
+    
+}
+
 function renderPokemonOnOverlayContent(i){
     let content = document.getElementById('overlay-body');
     content.innerHTML += htmlOverlayBody(i);

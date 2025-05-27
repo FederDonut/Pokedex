@@ -203,7 +203,6 @@ function findPokemon(){
             console.log(pokemon.name.toLowerCase().startsWith(target))    
             return pokemon.name.toLowerCase().startsWith(target);
         }).map(pokemon => pokemon.id)
-        
         markfoundedPokemon(matchingPokemonIds);
     }else{
         alert('Min drei Zeichen eingeben')
