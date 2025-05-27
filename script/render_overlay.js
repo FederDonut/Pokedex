@@ -13,11 +13,6 @@ function renderPokemonObject(startIndex = 0){
     }  
 };
 
-function renderFoundedPokemon(){
-    let foundedContent = document.getElementById('founded-content');
-    
-}
-
 function renderPokemonOnOverlayContent(i){
     let content = document.getElementById('overlay-body');
     content.innerHTML += htmlOverlayBody(i);
@@ -68,6 +63,10 @@ function renderMoreContent(){
     loadBtn.innerHTML =  htmlLoadButton();
 }
 
+function renderSearchInfo(){
+    let info = document.getElementById('searchInfo');
+    info.innerHTML = htmlSearchInfo();
+}
 //-------------------------------LoadingScreen---------------------
 function showLoadingSpinner(){
     let loadinsgspinner = document.getElementById('loading-spinner');

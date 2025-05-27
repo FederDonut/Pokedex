@@ -24,13 +24,18 @@ async function fetchBaseAPI(startIndex = 1, endIndex = counter){
             console.error(error);
         }
     }
+    callFetchApiFunctions(startIndexOfNewData)
+}
+
+function callFetchApiFunctions(startIndexOfNewData){
+
     dataProcessing(startIndexOfNewData);   
     processingPokemonTypes(startIndexOfNewData);
     processingPokemonAbilitys(startIndexOfNewData);
     processingPokemonStats(startIndexOfNewData)
     createPokemonObject(startIndexOfNewData);
     fetchPokemonIMG(startIndexOfNewData);
-    renderPokemonObject(startIndexOfNewData); 
+    renderPokemonObject(startIndexOfNewData);
 }
 
 async function fetchPokemonIMG(startIndex =0 ) {
