@@ -60,14 +60,6 @@ async function fetchOverlayPokemonImg(i){
     }
 }
 
-//function removeMarkingChoosenPokemon(){
-//    let marker = document.getElementById('card'+counter);
-//    if(marker){
-//        marker.classList.remove('choosen-pokemon');
-//        marker.classList.remove('neon-pulse');
-//    }
-//}
-
 function backgroundColor(id){
     let type = document.getElementById('main-type'+id);
     let card = document.getElementById('card'+id);
@@ -167,34 +159,11 @@ function callSwitchBtn(i){
         currentWindowWidth()
 }
 
-//async function findPokemon() {
-//    let serach = document.getElementById('search')
-//    let contentRef = document.getElementById('content');
-//    let input = serach.value;
-//    checkInputValue(input)
-//    loadedPokemon = 0;
-//    try{
-//        const searchResponse = await fetch(BASE_URL+input);
-//        if(searchResponse.ok){
-//            showLoadingSpinner();
-//            contentRef.innerHTML="";
-//            let data = await searchResponse.json();
-//            counter = data.id;
-//            loadedPokemonTotal = data.id;     
-//            clearStorage();
-//            fetchBaseAPI();
-//            setTimeout(markingChoosenPokemon,2000);   
-//        }
-//    }catch(error){
-//        console.error(error);
-//    }  
-//}
-
 function checkInputValue(input){
     const isNumber = Number(input);
     if(input.length < 3 && !isNumber){
         alert('Mindestens 3 Zeichen oder eine nummerische ID !');
-        return; // löst funktions abbruch aus 
+        return; 
     }
 }
 
@@ -218,7 +187,6 @@ function markingChoosenPokemon(){
 
 function loadMorePokemon(){
     showLoadingSpinner();
-    removeMarkingChoosenPokemon();
     let newStartIndex = counter +1 ;
     counter +=20;
     let newEndIndex = counter
@@ -251,7 +219,6 @@ function markfoundedPokemon(matchingPokemonIds){
         const pokemonId = parseInt(elementIdString);
         if(matchingPokemonIds.includes(pokemonId)){
             pokemonElement.classList.add('choosen-pokemon');
-            //pokemonElement.classList.add('neon-pulse');
         }else{
             pokemonElement.classList.add('d_none');
         }
