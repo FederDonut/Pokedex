@@ -4,7 +4,8 @@ let PokemonData =[];
 let PokemonAbilitys =[];
 let PokemonStats = [];
 let PokemonTypes = [];
-let PokemonObjects =[]; 
+let PokemonObjects =[];
+let PokemonName = []; 
 
 let PokemonMaxStatsValue = [
     {

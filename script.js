@@ -60,13 +60,13 @@ async function fetchOverlayPokemonImg(i){
     }
 }
 
-function removeMarkingChoosenPokemon(){
-    let marker = document.getElementById('card'+counter);
-    if(marker){
-        marker.classList.remove('choosen-pokemon');
-        marker.classList.remove('neon-pulse');
-    }
-}
+//function removeMarkingChoosenPokemon(){
+//    let marker = document.getElementById('card'+counter);
+//    if(marker){
+//        marker.classList.remove('choosen-pokemon');
+//        marker.classList.remove('neon-pulse');
+//    }
+//}
 
 function backgroundColor(id){
     let type = document.getElementById('main-type'+id);
@@ -98,7 +98,6 @@ function toggleOverlay(i){
         overlayRef.innerHTML="";
         scrollPrevention();
     }else{
-        removeMarkingChoosenPokemon();
         overlayRef.innerHTML = renderOverlay();
         callOverlay(i); 
     }
@@ -168,28 +167,28 @@ function callSwitchBtn(i){
         currentWindowWidth()
 }
 
-async function findPokemon() {
-    let serach = document.getElementById('search')
-    let contentRef = document.getElementById('content');
-    let input = serach.value;
-    checkInputValue(input)
-    loadedPokemon = 0;
-    try{
-        const searchResponse = await fetch(BASE_URL+input);
-        if(searchResponse.ok){
-            showLoadingSpinner();
-            contentRef.innerHTML="";
-            let data = await searchResponse.json();
-            counter = data.id;
-            loadedPokemonTotal = data.id;     
-            clearStorage();
-            fetchBaseAPI();
-            setTimeout(markingChoosenPokemon,2000);   
-        }
-    }catch(error){
-        console.error(error);
-    }  
-}
+//async function findPokemon() {
+//    let serach = document.getElementById('search')
+//    let contentRef = document.getElementById('content');
+//    let input = serach.value;
+//    checkInputValue(input)
+//    loadedPokemon = 0;
+//    try{
+//        const searchResponse = await fetch(BASE_URL+input);
+//        if(searchResponse.ok){
+//            showLoadingSpinner();
+//            contentRef.innerHTML="";
+//            let data = await searchResponse.json();
+//            counter = data.id;
+//            loadedPokemonTotal = data.id;     
+//            clearStorage();
+//            fetchBaseAPI();
+//            setTimeout(markingChoosenPokemon,2000);   
+//        }
+//    }catch(error){
+//        console.error(error);
+//    }  
+//}
 
 function checkInputValue(input){
     const isNumber = Number(input);
@@ -228,6 +227,39 @@ function loadMorePokemon(){
     fetchBaseAPI(newStartIndex, newEndIndex);
 }
 
+function findPokemon(){
+    let search = document.getElementById('search');
+    const target = search.value.toLowerCase();
+    if(search.value.length >= 3){
+        let matchingPokemonIds = PokemonObjects.filter(pokemon =>{
+            console.log(pokemon.name.toLowerCase().startsWith(target))    
+            return pokemon.name.toLowerCase().startsWith(target);
+        }).map(pokemon => pokemon.id)
+        
+        markfoundedPokemon(matchingPokemonIds);
+    }else{
+        alert('Min drei Zeichen eingeben')
+    }
+}
 
+function markfoundedPokemon(matchingPokemonIds){
+    const contentElements = document.querySelectorAll('#content .card');
+    let reloadBtn = document.getElementById('reloadBtn');
+    for( m = 0; m < contentElements.length; m++){
+        const pokemonElement = contentElements[m];
+        const elementIdString = pokemonElement.id.replace('card', ''); 
+        const pokemonId = parseInt(elementIdString);
+        if(matchingPokemonIds.includes(pokemonId)){
+            pokemonElement.classList.add('choosen-pokemon');
+            //pokemonElement.classList.add('neon-pulse');
+        }else{
+            pokemonElement.classList.add('d_none');
+        }
+    }
+    reloadBtn.classList.remove('d_none');
+}
 
+function reload(){
+    location.reload();
+}
 

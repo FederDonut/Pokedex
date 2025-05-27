@@ -17,9 +17,6 @@
     <script src="./script/responsive.js"></script>
     <script src="./script.js"></script>
 
-  
-
-
 </head>
 <body onload="init()">
     <header>
@@ -27,9 +24,12 @@
             <h1>Pokedex</h1>
             <div class="search-flex">
                 <form class="d-flex" role="search">
-                    <input class="form-control me-2" id="search" type="search" placeholder="Name or Id / Mew or 152" aria-label="Search"/>
+                    <input class="form-control me-2" id="search" type="search" placeholder="Name (min 3 Buchstaben)" aria-label="Search"/>
                     <button class="btn btn-outline-light" onclick="findPokemon()" type="button">Search</button>
+                    <button class="btn btn-outline-light d_none" id="reloadBtn" onclick="reload()">Back</button>
+                    
                 </form>
+                
             </div>
         </div>
         
@@ -39,6 +39,7 @@
     <div class="loading-spinner d_none" id="loading-spinner"></div>
     <div class="main-content-wrapper">
         <div class="content" id="content"></div>
+        <div class="content" id="founded-content"></div>
         <div class="more-content" id="more-content"></div>
     </div>
     <footer></footer>    

@@ -151,8 +151,6 @@ function htmlLoadButton(){
   return`
         
         <button class="loadBtn" onclick="loadMorePokemon()">load more Pokemon</button>
-        
-
   `
 }
 
