@@ -110,11 +110,7 @@ function callOverlay(i){
     extractPokemonId(i); 
     currentWindowWidth(i);
     callResponsivOverlay(i);
-    scrollPrevention();
-    if(window.innerWidth<=575){
-        statsButtonManagement();
-    }
-     
+    scrollPrevention();     
 }
 
 function preventBubbling (event){
