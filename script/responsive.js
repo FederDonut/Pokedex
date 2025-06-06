@@ -21,13 +21,12 @@ function callResponsivOverlay(){
     if(overlayRef && !overlayRef.classList.contains('d_none')){
         if(maxOverlayLimit.matches && !overlayRef.classList.contains('d_none')){
             prepareForResponsivOverlayStats();
-            renderResponsivOverlay();    
+            renderResponsivOverlay();
+            showNormalStats();   // 06.06.2025 
         }else{
             backToNormalOverlay();
         }
-    }else{
-        console.log('overlay nicht sichtbar');
-    } 
+    }
 }
 
 function renderResponsivOverlay(){
@@ -55,8 +54,10 @@ function backToNormalOverlay(){
 
 function showCombatStats(){    
     let statsLoadernormal = document.getElementById('stats-loader-normal');
+    let normalBtn = document.getElementById('normalStats');
     statsLoadernormal.innerHTML="";
     copySpecificStats();
+    statsButtonManagement();
     
 }
 
@@ -64,6 +65,7 @@ function showNormalStats(){
     let statsLoaderCombat = document.getElementById('stats-loader-combat');
     statsLoaderCombat.innerHTML="";
     copyNormalStats();
+    
 }
 
 function copySpecificStats(){
@@ -86,4 +88,10 @@ function copyNormalStats(){
     }else{
         console.error('Einer oder Beide Div Container konnten nicht gefunden werden')
     }
+}
+
+function statsButtonManagement(){
+    let normalBtn = document.getElementById('normalStats');
+    normalBtn.classList.toggle('d_none');
+
 }

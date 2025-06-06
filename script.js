@@ -110,7 +110,8 @@ function callOverlay(i){
     extractPokemonId(i); 
     currentWindowWidth(i);
     callResponsivOverlay(i);
-    scrollPrevention(); 
+    scrollPrevention();
+    statsButtonManagement(); 
 }
 
 function preventBubbling (event){
@@ -155,13 +156,16 @@ function switchBtnRight(i){
 
 function callSwitchBtn(i){
     renderOverlayTypeColor(i);
-        renderPokemonOnOverlayContent(i);
-        fetchOverlayPokemonImg(i);
-        renderPokemonOverlayStats(i);
-        calculatePokemonStats(i);
-        checkTypesOnOverlay(i);
-        extractPokemonId(i); 
-        currentWindowWidth()
+    renderPokemonOnOverlayContent(i);
+    fetchOverlayPokemonImg(i);
+    renderPokemonOverlayStats(i);
+    calculatePokemonStats(i);
+    checkTypesOnOverlay(i);
+    extractPokemonId(i); 
+    currentWindowWidth()
+    renderResponsivOverlay();
+    showNormalStats();
+    statsButtonManagement();
 }
 
 function checkInputValue(input){

@@ -15,13 +15,13 @@ function htmlLayout(id,name,typ1,typ2,height,weight,i){
                 </div>
                 <div id="Pokemon-Typ" class="pokemon-typ">
                   <div class="typ1">
-                    <h4>Typ:</h4>
+                    <h4>typ:</h4>
                     <div id="main-type${id}">
                       <h4>${typ1}</h4>
                     </div>
                   </div>
                   <div class="typ1">  
-                    <h4 id="second-type-header${id}">Typ:</h4>
+                    <h4 id="second-type-header${id}">typ:</h4>
                     <div id="second-type${id}">
                       <h4>${typ2}</h4>
                     </div>
@@ -88,11 +88,11 @@ function htmlOverlayPokemonStats(i){
             <h3 class="height-space-value">${PokemonObjects[i].weight/10} kg</h3>
         </div>
         <div class="flex-content">
-            <h3 class="height-space-name">Typ: </h3>
+            <h3 class="height-space-name">typ: </h3>
             <h3 class="height-space-value"> ${PokemonObjects[i].typ1}</h3>
         </div>
         <div class="flex-content" id="flex-content-typ2">
-            <h3 class="height-space-name" id="overlay-type-header">Typ: </h3>
+            <h3 class="height-space-name" id="overlay-type-header">typ: </h3>
             <h3 class="height-space-value" id="overlay-typ${PokemonObjects[i].id}"> ${PokemonObjects[i].typ2}</h3>
         </div>
         <div class="flex-content">
