@@ -22,7 +22,8 @@ function callResponsivOverlay(){
         if(maxOverlayLimit.matches && !overlayRef.classList.contains('d_none')){
             prepareForResponsivOverlayStats();
             renderResponsivOverlay();
-            showNormalStats();   // 06.06.2025 
+            showNormalStats();   
+            statsButtonManagement();  
         }else{
             backToNormalOverlay();
         }
@@ -54,7 +55,6 @@ function backToNormalOverlay(){
 
 function showCombatStats(){    
     let statsLoadernormal = document.getElementById('stats-loader-normal');
-    let normalBtn = document.getElementById('normalStats');
     statsLoadernormal.innerHTML="";
     copySpecificStats();
     statsButtonManagement();

@@ -111,7 +111,10 @@ function callOverlay(i){
     currentWindowWidth(i);
     callResponsivOverlay(i);
     scrollPrevention();
-    statsButtonManagement(); 
+    if(window.innerWidth<=575){
+        statsButtonManagement();
+    }
+     
 }
 
 function preventBubbling (event){
@@ -163,9 +166,8 @@ function callSwitchBtn(i){
     checkTypesOnOverlay(i);
     extractPokemonId(i); 
     currentWindowWidth()
-    renderResponsivOverlay();
     showNormalStats();
-    statsButtonManagement();
+    statsButtonManagement();    
 }
 
 function checkInputValue(input){
